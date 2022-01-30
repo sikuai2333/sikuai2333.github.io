@@ -130,15 +130,15 @@ const MODE_NORMAL = 1, MODE_ENDLESS = 2, MODE_PRACTICE = 3;
 
     function gameInit() {
         createjs.Sound.registerSound({
-            src: "./static/music/err.mp3",
+            src: "./static/music/eatCS_err.mp3",
             id: "err"
         });
         createjs.Sound.registerSound({
-            src: "./static/music/end.mp3",
+            src: "./static/music/eatCS_end.mp3",
             id: "end"
         });
         createjs.Sound.registerSound({
-            src: "./static/music/tap.mp3",
+            src: "./static/music/eatCS_tap.mp3",
             id: "tap"
         });
         gameRestart();
