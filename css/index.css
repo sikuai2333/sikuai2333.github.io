@@ -1488,6 +1488,13 @@ a {
 a:hover {
   color: #49b1f5;
 }
+#site-title,
+#site-subtitle,
+.site-name,
+#aside-content .author-info__name,
+#aside-content .author-info__description {
+  font-family: 华文细黑;
+}
 .is-center {
   text-align: center;
 }
@@ -1940,6 +1947,7 @@ figure.highlight pre .javascript .function {
   height: 50%;
   vertical-align: top;
   text-align: center;
+  font-family: 华文细黑;
 }
 @media screen and (max-width: 768px) {
   .error404 #error-wrap .error-content .error-info {
@@ -2864,6 +2872,9 @@ h1.page-title + .tag-cloud-list {
 }
 #aside-content #card-toc .toc-content:not(.is-expand) .toc-item.active .toc-child {
   display: block;
+}
+#aside-content #card-toc .toc-content:not(.is-expand) .toc-item:not(.active) {
+  -webkit-filter: blur(2px);
 }
 #aside-content #card-toc .toc-content ol,
 #aside-content #card-toc .toc-content li {
