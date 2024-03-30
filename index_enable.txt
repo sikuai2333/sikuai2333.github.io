@@ -1,5 +1,5 @@
 {
-  "latestVersion": "120",
+  "latestVersion": 120,
   "softwareEnabled": "开",
   "updateUrl":"",
   "customerServiceQQ":""
