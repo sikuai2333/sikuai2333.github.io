@@ -1,6 +1,6 @@
 {
   "latestVersion": 140,
-  "softwareEnabled": true,
+  "softwareEnabled": "开",
   "updateUrl":"https://www.bing.com",
   "customerServiceQQ":""
 }
