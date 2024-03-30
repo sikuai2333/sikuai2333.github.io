@@ -1,5 +1,5 @@
 {
-  "latestVersion": "140",
+  "latestVersion": 140,
   "softwareEnabled": true,
   "updateUrl":"https://www.bing.com",
   "customerServiceQQ":""
