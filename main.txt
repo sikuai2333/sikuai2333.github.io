@@ -52,8 +52,8 @@
       "url": "https://www.bilibili.com"
     },
     {
-      "name": "书签3",
-      "url": "/bookmark/2"
+      "name": "天气",
+      "url": "https://www.apii.cn/api/60s-v5/?city="
     },
     {
       "name": "书签4",
