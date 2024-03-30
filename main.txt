@@ -1,75 +1,89 @@
 {
-  "announcement": "欢迎使用无服务器软件库",
-  "banners": [
-    {
-      "text": "示例",
-      "type": 0,
-      "url": "/pages/watchVideos/watchVideos",
-      "imageUrl": "https://gitcode.net/m0_74832252/miao/-/raw/master/img/pcacg/63e0691e4a73e.jpg"
-    },
-    {
-      "text": "此处为复制的文本",
-      "type": 1,
-      "url": "/pages/watchVideos/watchVideos",
-      "imageUrl": "https://gitcode.net/m0_74832252/miao/-/raw/master/img/pcacg/634fO4hC7oH5w.jpg"
-    },
-    {
-      "text": "示例",
-      "type": 2,
-      "url": "https://www.bing.com",
-      "imageUrl": "https://gitcode.net/m0_74832252/miao/-/raw/master/img/pcacg/63e06a4415780.jpg"
-    }
-  ],
-  "categories": [
-    {
-      "name": "视频",
-      "url": "/pages/watchVideos/watchVideos"
-    },
-    {
-      "name": "图片",
-      "url": "/pages/watchImages/watchImages"
-    },
-    {
-      "name": "分类3",
-      "url": "/category/2"
-    },
-    {
-      "name": "分类4",
-      "url": "/category/2"
-    },
-    {
-      "name": "自适应数量宽度",
-      "url": "/category/2"
-    }
-  ],
-  "bookmarks": [
-    {
-      "name": "必应",
-      "url": "https://www.bing.com"
-    },
-    {
-      "name": "哔哩哔哩",
-      "url": "https://www.bilibili.com"
-    },
-    {
-      "name": "天气",
-      "url": "https://www.apii.cn/api/60s-v5/?city="
-    },
-    {
-      "name": "书签4",
-      "url": "/bookmark/2"
-    },
-    {
-      "name": "书签5",
-      "url": "/bookmark/2"
-    },
-    {
-      "name": "书签6",
-      "url": "/bookmark/2"
-    },
-    {
-      "name": "自适应数量",
-      "url": "/bookmark/2"
-    }
-  ]
-}
+    "announcement": "欢迎使用无服务器软件库",
+    "banners": [
+      {
+        "text": "示例",
+        "type": 0,
+        "url": "/pages/watchVideos/watchVideos",
+        "imageUrl": "https://gitcode.net/m0_74832252/miao/-/raw/master/img/pcacg/63e0691e4a73e.jpg"
+      },
+      {
+        "text": "此处为复制的文本",
+        "type": 1,
+        "url": "/pages/watchVideos/watchVideos",
+        "imageUrl": "https://gitcode.net/m0_74832252/miao/-/raw/master/img/pcacg/634fO4hC7oH5w.jpg"
+      },
+      {
+        "text": "示例",
+        "type": 2,
+        "url": "https://www.bing.com",
+        "imageUrl": "https://gitcode.net/m0_74832252/miao/-/raw/master/img/pcacg/63e06a4415780.jpg"
+      }
+    ],
+    "categories": [
+      {
+  
+        "name": "视频",
+        "isVip": 0,
+        "url": "/pages/watchVideos/watchVideos"
+      },
+      {
+        "name": "图片",
+        "isVip": 1,
+        "url": "/pages/watchImages/watchImages"
+      },
+      {
+        "name": "非会员网站",
+        "isVip": 0,
+        "url": "https://www.bilibili.com"
+      },
+      {
+        "name": "会员网站",
+        "isVip": 1,
+        "url": "https://www.bilibili.com"
+      },
+      {
+        "name": "自适应数量宽度",
+        "isVip": 1,
+        "url": "/category/2"
+      }
+    ],
+    "bookmarks": [
+      {
+        "name": "必应",
+        "isVip": 0,
+        "url": "https://www.bing.com"
+      },
+      {
+        "name": "哔哩哔哩",
+        "isVip": 1,
+        "url": "https://www.bilibili.com"
+      },
+      {
+        "name": "天气",
+        "isVip": 1,
+        "url": "https://www.apii.cn/api/60s-v5/?city="
+      },
+      {
+        "name": "书签4",
+        "isVip": 1,
+        "url": "/bookmark/2"
+      },
+      {
+        "name": "书签5",
+        "isVip": 1,
+        "url": "/bookmark/2"
+      },
+      {
+        "name": "书签6",
+        "isVip": 1,
+        "url": "/bookmark/2"
+      },
+      {
+        "name": "自适应数量",
+        "isVip": 1,
+        "url": "/bookmark/2"
+      }
+    ]
+  }
+  
