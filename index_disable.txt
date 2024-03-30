@@ -1,0 +1,6 @@
+{
+  "latestVersion": "120",
+  "softwareEnabled": false,
+  "updateUrl":"",
+  "customerServiceQQ":""
+}
