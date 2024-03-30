@@ -1,4 +1,5 @@
 {
+  "announcement": "欢迎使用无服务器软件库",
   "banners": [
     {
       "text": "示例",
