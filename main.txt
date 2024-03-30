@@ -25,26 +25,31 @@
   
         "name": "视频",
         "isVip": 0,
+        "vipLevel": 1,
         "url": "/pages/watchVideos/watchVideos"
       },
       {
         "name": "图片",
         "isVip": 1,
+        "vipLevel": 1,
         "url": "/pages/watchImages/watchImages"
       },
       {
         "name": "非会员网站",
         "isVip": 0,
+        "vipLevel": 1,
         "url": "https://www.bilibili.com"
       },
       {
         "name": "会员网站",
         "isVip": 1,
+        "vipLevel": 1,
         "url": "https://www.bilibili.com"
       },
       {
         "name": "自适应数量宽度",
         "isVip": 1,
+        "vipLevel": 1,
         "url": "/category/2"
       }
     ],
@@ -52,36 +57,43 @@
       {
         "name": "必应",
         "isVip": 0,
+        "vipLevel": 1,
         "url": "https://www.bing.com"
       },
       {
         "name": "哔哩哔哩",
         "isVip": 1,
+        "vipLevel": 1,
         "url": "https://www.bilibili.com"
       },
       {
         "name": "天气",
         "isVip": 1,
+        "vipLevel": 1,
         "url": "https://www.apii.cn/api/60s-v5/?city="
       },
       {
         "name": "书签4",
         "isVip": 1,
+        "vipLevel": 1,
         "url": "/bookmark/2"
       },
       {
         "name": "书签5",
         "isVip": 1,
+        "vipLevel": 1,
         "url": "/bookmark/2"
       },
       {
         "name": "书签6",
         "isVip": 1,
+        "vipLevel": 1,
         "url": "/bookmark/2"
       },
       {
         "name": "自适应数量",
         "isVip": 1,
+        "vipLevel": 1,
         "url": "/bookmark/2"
       }
     ]
