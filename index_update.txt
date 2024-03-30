@@ -1,0 +1,6 @@
+{
+  "latestVersion": "140",
+  "softwareEnabled": true,
+  "updateUrl":"https://www.bing.com",
+  "customerServiceQQ":""
+}
