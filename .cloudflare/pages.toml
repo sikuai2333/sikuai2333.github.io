@@ -1,4 +1,4 @@
-# Cloudflare Pages配置文件
+# Cloudflare Pages官方配置
 
 [build]
   command = "pip install pyyaml && python clean_lastmod.py && hugo --minify"

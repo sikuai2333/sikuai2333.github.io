@@ -67,3 +67,15 @@ Make sure also to specify Hugo version in the environment variable `HUGO_VERSION
 
 ![Environment variable](https://user-images.githubusercontent.com/5889006/156917212-afb7c70d-ab85-480f-8288-b15781a462c0.png)
 </details>
+
+## Cloudflare Pages部署
+
+如果你使用Cloudflare Pages部署此博客，请注意以下事项：
+
+1. 主题Stack在Cloudflare Pages环境中可能出现`.Site.Lastmod.IsZero`错误
+2. 解决方案:
+   - 使用`clean_lastmod.py`脚本清理文章中的lastmod字段
+   - 自定义`layouts/partials/head/opengraph/provider/base.html`模板
+   - 设置正确的Cloudflare Pages构建命令
+
+详细解决方案请参考`cloudflare_pages_fix.md`文档。
