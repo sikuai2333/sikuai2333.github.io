@@ -2,11 +2,10 @@
 title: frida hook webview可调试
 date: 2024-08-02
 categories:
-  - 开发技术
+- 开发技术
 tags:
-  - blog
-  - 开发技术
-lastmod: 2025-05-05T08:22:26.071Z
+- blog
+- 开发技术
 ---
 ```javascript
 Java.perform(function () {

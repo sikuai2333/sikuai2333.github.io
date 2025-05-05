@@ -2,11 +2,10 @@
 title: python获取https证书信息
 date: 2024-01-12
 categories:
-  - 开发技术
+- 开发技术
 tags:
-  - blog
-  - 开发技术
-lastmod: 2025-05-05T08:22:26.116Z
+- blog
+- 开发技术
 ---
 ```python3
 # -*- coding: utf-8 -*-

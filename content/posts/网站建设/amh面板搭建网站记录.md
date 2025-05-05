@@ -1,11 +1,11 @@
 ---
 title: amh面板搭建网站记录
 tags:
-  - 前端
-  - blog
-  - 网站建设
+- 前端
+- blog
+- 网站建设
 categories:
-  - 技术
+- 技术
 keywords: amh面板,伪静态
 description: amh面板搭建网站记录
 top_img: https://v2.api-m.com/api/wallpaper?return=302
@@ -16,12 +16,11 @@ copyright_author: sikuai
 copyright_author_href: https://sikuai2333.github.io
 highlight_shrink: false
 date: 2023-10-10 11:06:47
-updated: 
-copyright_url: 
-copyright_info: 
-aside: 
-abcjs: 
-lastmod: 2025-05-05T08:22:26.147Z
+updated: null
+copyright_url: null
+copyright_info: null
+aside: null
+abcjs: null
 ---
 ## 伪静态设置
 

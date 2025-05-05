@@ -2,11 +2,10 @@
 title: typescript学习笔记
 date: 2025-03-16
 categories:
-  - 学习笔记
+- 学习笔记
 tags:
-  - blog
-  - 学习笔记
-lastmod: 2025-05-05T08:26:21.104Z
+- blog
+- 学习笔记
 ---
 # 1. 视频链接
 

@@ -1,14 +1,14 @@
 ---
 title: 实现顶栏logo动态展示
 tags:
-  - 博客美化
-  - 前端
-  - styl
-  - pug
-  - blog
-  - 网站建设
+- 博客美化
+- 前端
+- styl
+- pug
+- blog
+- 网站建设
 categories:
-  - 博客美化
+- 博客美化
 keywords: 实现顶栏logo动态展示
 description: 实现顶栏logo动态展示
 top_img: https://s2.loli.net/2023/05/16/MTVUOApKsdC8qma.png
@@ -19,12 +19,11 @@ copyright_author: sikuai
 copyright_author_href: https://sikuai2333.github.io
 highlight_shrink: false
 date: 2023-05-16 12:55:39
-updated: 
-copyright_url: 
-copyright_info: 
-aside: 
-abcjs: 
-lastmod: 2025-05-05T08:22:26.146Z
+updated: null
+copyright_url: null
+copyright_info: null
+aside: null
+abcjs: null
 ---
 # 动态变化效果
 

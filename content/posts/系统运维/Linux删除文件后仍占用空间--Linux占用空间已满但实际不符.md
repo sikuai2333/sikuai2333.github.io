@@ -10,18 +10,17 @@ top: false
 cover: https://s2.loli.net/2023/04/12/C8AVeFymOYl1RIM.png
 toc: true
 mathjax: false
-img: 
-coverImg: 
-summary: 
+img: null
+coverImg: null
+summary: null
 tags:
-  - 踩坑
-  - Linux
-  - 服务器
-  - blog
-  - 系统运维
+- 踩坑
+- Linux
+- 服务器
+- blog
+- 系统运维
 categories:
-  - 技术
-lastmod: 2025-05-05
+- 技术
 ---
 # 问题描述
 

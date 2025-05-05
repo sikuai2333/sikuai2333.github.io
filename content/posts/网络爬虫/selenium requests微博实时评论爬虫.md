@@ -7,13 +7,12 @@ toc: true
 mathjax: false
 date: 2022-09-21 07:09:28
 tags:
-  - python
-  - 爬虫
-  - blog
-  - 网络爬虫
+- python
+- 爬虫
+- blog
+- 网络爬虫
 categories:
-  - 技术
-lastmod: 2025-05-05T08:22:26.119Z
+- 技术
 ---
 ## 起因
 

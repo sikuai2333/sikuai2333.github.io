@@ -1,14 +1,14 @@
 ---
 title: NoneBot搭配gocqhttp创建QQ机器人
 tags:
-  - QQ机器人
-  - nonebot
-  - go-cqhttp
-  - python
-  - blog
-  - 开发技术
+- QQ机器人
+- nonebot
+- go-cqhttp
+- python
+- blog
+- 开发技术
 categories:
-  - 技术
+- 技术
 keywords: qq机器人
 description: NoneBot搭配gocqhttp创建QQ机器人
 top_img: https://img.gumengya.com/api/mc/11.jpg
@@ -19,10 +19,9 @@ copyright_author: sikuai
 copyright_author_href: https://sikuai2333.github.io
 highlight_shrink: false
 date: 2023-07-30 08:16:02
-updated: 
-aside: 
-abcjs: 
-lastmod: 2025-05-05T08:22:26.073Z
+updated: null
+aside: null
+abcjs: null
 ---
 <font color="#e36c09">原本零零散散写过一些脚本，有的年久失修，有的代码不规范，趁假期全部解决并移入家里云。适当添加新功能</font>
 

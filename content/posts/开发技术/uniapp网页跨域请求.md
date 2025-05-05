@@ -2,11 +2,10 @@
 title: uniapp网页跨域请求
 date: 2024-03-30
 categories:
-  - 开发技术
+- 开发技术
 tags:
-  - blog
-  - 开发技术
-lastmod: 2025-05-05T08:22:26.127Z
+- blog
+- 开发技术
 ---
 请求失败: {errMsg: "request:fail abort"}\
 通过common/config.js进行配置

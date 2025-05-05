@@ -2,11 +2,10 @@
 title: Ubuntu挂载硬盘（不格式化）
 date: 2024-08-03
 categories:
-  - 系统运维
+- 系统运维
 tags:
-  - blog
-  - 系统运维
-lastmod: 2025-05-05T08:22:26.122Z
+- blog
+- 系统运维
 ---
 ```shell
 # 列举硬盘

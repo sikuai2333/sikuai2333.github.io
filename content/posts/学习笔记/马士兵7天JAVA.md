@@ -2,11 +2,10 @@
 title: 1. 变量
 date: 2025-01-18
 categories:
-  - 学习笔记
+- 学习笔记
 tags:
-  - blog
-  - 学习笔记
-lastmod: 2025-05-05T08:25:57.289Z
+- blog
+- 学习笔记
 ---
 # 1. 变量
 

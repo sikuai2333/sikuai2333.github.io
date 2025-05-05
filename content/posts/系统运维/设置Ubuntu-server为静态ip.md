@@ -1,11 +1,11 @@
 ---
 title: 设置Ubuntu-server为静态ip
 tags:
-  - Ubuntu
-  - blog
-  - 系统运维
+- Ubuntu
+- blog
+- 系统运维
 categories:
-  - 技术
+- 技术
 keywords: Ubuntu-server
 description: 设置Ubuntu-server为静态ip
 top_img: https://img.gumengya.com/api/mc/26.jpg
@@ -16,12 +16,11 @@ copyright_author: sikuai
 copyright_author_href: https://sikuai2333.github.io
 highlight_shrink: false
 date: 2023-07-30 08:25:25
-updated: 
-copyright_url: 
-copyright_info: 
-aside: 
-abcjs: 
-lastmod: 2025-05-05T08:22:26.140Z
+updated: null
+copyright_url: null
+copyright_info: null
+aside: null
+abcjs: null
 ---
 **家里云每次重启都会重新获取ip，绑定的ssh,数据库等都要重新配置，查了两篇教程貌似文件不太一样，顺手记录下来。**\
 ![](https://s2.loli.net/2023/07/28/Zei65ADrafbR173.png)

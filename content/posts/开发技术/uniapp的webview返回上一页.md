@@ -2,11 +2,10 @@
 title: uniapp的webview返回上一页
 date: 2024-07-10
 categories:
-  - 开发技术
+- 开发技术
 tags:
-  - blog
-  - 开发技术
-lastmod: 2025-05-05T08:22:26.126Z
+- blog
+- 开发技术
 ---
 ```js
 	var wv; //计划创建的webview

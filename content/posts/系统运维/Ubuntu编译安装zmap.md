@@ -1,13 +1,13 @@
 ---
 title: Ubuntu编译安装zmap
 tags:
-  - Ubuntu
-  - zmap
-  - 服务器
-  - blog
-  - 系统运维
+- Ubuntu
+- zmap
+- 服务器
+- blog
+- 系统运维
 categories:
-  - 技术
+- 技术
 keywords: Ubuntu编译安装zmap
 description: Ubuntu编译安装zmap
 top_img: https://api.gmit.vip/Api/McImg?format=image
@@ -18,12 +18,11 @@ copyright_author: sikuai
 copyright_author_href: https://sikuai2333.github.io
 highlight_shrink: false
 date: 2023-08-24 07:27:56
-updated: 
-copyright_url: 
-copyright_info: 
-aside: 
-abcjs: 
-lastmod: 2025-05-05T08:22:26.125Z
+updated: null
+copyright_url: null
+copyright_info: null
+aside: null
+abcjs: null
 ---
 ## 0.1. 编译安装
 

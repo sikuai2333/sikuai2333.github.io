@@ -2,11 +2,10 @@
 title: dart学习笔记
 date: 2025-01-21
 categories:
-  - 学习笔记
+- 学习笔记
 tags:
-  - blog
-  - 学习笔记
-lastmod: 2025-05-05T08:22:26.156Z
+- blog
+- 学习笔记
 ---
 https://www.bilibili.com/video/BV1RZ421p7BL
 

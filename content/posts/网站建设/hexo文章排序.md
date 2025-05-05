@@ -2,11 +2,10 @@
 title: hexo文章排序
 date: 2023-07-30
 categories:
-  - 网站建设
+- 网站建设
 tags:
-  - blog
-  - 网站建设
-lastmod: 2025-05-05T08:22:26.144Z
+- blog
+- 网站建设
 ---
 ```js
 'use strict';

@@ -2,11 +2,10 @@
 title: 命令行用unzip和p7zip带密码解压
 date: 2025-01-18
 categories:
-  - 系统运维
+- 系统运维
 tags:
-  - blog
-  - 系统运维
-lastmod: 2025-05-05T08:46:51.370Z
+- blog
+- 系统运维
 ---
 # 1. unzip解压
 

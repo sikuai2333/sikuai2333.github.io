@@ -1,0 +1,85 @@
+{{- $params := .Site.Params -}}
+<title>{{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ if .Title }}{{ .Title }} &lsaquo; {{ end }}{{ .Site.Title }}{{ end }}</title>
+
+<meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'>
+<meta name='color-scheme' content='light dark'>
+
+{{- if not .IsHome }}
+    <meta name='description' content='{{ partial "data/description" . }}'>
+{{- else }}
+    {{- with $params.description }}
+    <meta name='description' content='{{ . }}'>
+    {{- end }}
+{{- end }}
+
+{{- $pageCanonical := .Permalink }}
+{{- if in $pageCanonical "?p=" }}
+    {{- $pageCanonical = replace $pageCanonical "?p=" "/" }}
+{{- end }}
+<link rel='canonical' href='{{ $pageCanonical }}'>
+
+{{- /* OG metadata */ -}}
+<meta property='og:site_name' content='{{ .Site.Title }}'>
+<meta property='og:title' content='{{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ .Title }}{{ end }}'>
+<meta property='og:description' content='{{ partial "data/description" . }}'>
+<meta property='og:url' content='{{ .Permalink }}'>
+<meta property='og:type' content='{{ if .IsPage }}article{{ else }}website{{ end }}'>
+
+{{- /* Article specific OG data */ -}}
+{{- if .IsPage }}
+    {{- $iso8601 := "2006-01-02T15:04:05-07:00" -}}
+    {{- if not .PublishDate.IsZero }}
+    <meta property='article:published_time' content='{{ .PublishDate.Format $iso8601 }}'/>
+    {{- end }}
+    {{- if not .Lastmod.IsZero }}
+    <meta property='article:modified_time' content='{{ .Lastmod.Format $iso8601 }}'/>
+    {{- end }}
+    
+    {{- /* Removed problematic .Site.Lastmod code */}}
+    
+    {{- with .Params.categories }}
+        {{- range . }}
+        <meta property='article:section' content='{{ . }}'/>
+        {{- end }}
+    {{- end }}
+    {{- with .Params.tags }}
+        {{- range . }}
+        <meta property='article:tag' content='{{ . }}'/>
+        {{- end }}
+    {{- end }}
+{{- end }}
+
+{{- /* OpenGraph image */ -}}
+{{- with $.Params.image }}
+<meta property='og:image' content='{{ . | absURL }}' />
+{{- else }}
+    {{- with $.Site.Params.ogImage }}
+<meta property='og:image' content='{{ . | absURL }}' />
+    {{- else }}
+        {{- with $.Site.Params.image }}
+            <meta property='og:image' content='{{ . | absURL }}' />
+        {{- end }}
+    {{- end }}
+{{- end -}}
+
+{{- /* Twitter card */ -}}
+{{- with $params.opengraph.twitter }}
+<meta name='twitter:card' content='{{ default "summary_large_image" .card }}'>
+<meta name='twitter:title' content='{{ if $.IsHome }}{{ $.Site.Title }}{{ else }}{{ $.Title }}{{ end }}'>
+<meta name='twitter:description' content='{{ partial "data/description" $ }}'>
+    {{- if .site }}
+<meta name='twitter:site' content='@{{ .site }}'>
+    {{- end }}
+    {{- with $.Params.image }}
+<meta name='twitter:image' content='{{ . | absURL }}'>
+    {{- else }}
+        {{- with $.Site.Params.ogImage }}
+<meta name='twitter:image' content='{{ . | absURL }}'>
+        {{- else }}
+            {{- with $.Site.Params.image }}
+                <meta name='twitter:image' content='{{ . | absURL }}'>
+            {{- end }}
+        {{- end }}
+    {{- end -}}
+{{- end -}} 

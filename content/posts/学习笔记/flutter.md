@@ -2,11 +2,10 @@
 title: flutter学习笔记
 date: 2025-04-01
 categories:
-  - 学习笔记
+- 学习笔记
 tags:
-  - blog
-  - 学习笔记
-lastmod: 2025-05-05T08:25:58.686Z
+- blog
+- 学习笔记
 ---
 # 1. 一
 

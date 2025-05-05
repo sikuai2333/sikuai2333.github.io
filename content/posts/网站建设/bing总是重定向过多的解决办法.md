@@ -2,11 +2,10 @@
 title: bing总是重定向过多的解决办法
 date: 2024-09-30
 categories:
-  - 网站建设
+- 网站建设
 tags:
-  - blog
-  - 网站建设
-lastmod: 2025-05-05T08:22:26.068Z
+- blog
+- 网站建设
 ---
 来源[微软社区](https://answers.microsoft.com/zh-hans/microsoftedge/forum/all/%E5%9C%A8edge%E9%87%8C%E6%89%93%E5%BC%80%E5%85%B3/4c2d87b0-333b-4dd2-8877-cfb1e087a702)
 
