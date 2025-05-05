@@ -1,5 +1,5 @@
 # Change baseurl before deploy
-baseurl = "https://sikuai2333.github.io"
+baseurl = "https://sikuai.fun"
 languageCode = "zh-cn"
 title = "四块的博客"
 
