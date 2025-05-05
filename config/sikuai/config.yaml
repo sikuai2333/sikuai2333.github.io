@@ -1,0 +1,145 @@
+##########################################
+# Hugo博客配置文件 - Stack主题 - Sikuai环境
+##########################################
+
+# 站点基本信息
+baseurl: "https://sikua.fun"     # 网站的基本URL，部署前需修改
+languageCode: "zh-cn"            # 网站的语言代码
+title: "四块的小窝"               # 网站标题
+
+# Hugo模块配置
+module:
+  hugoVersion:
+    extended: true                # 使用Hugo扩展版（支持SCSS等）
+    min: "0.87.0"                 # 最低支持的Hugo版本
+
+# 内容语言配置
+defaultContentLanguage: "zh-cn"   # 默认内容语言
+                                  # 可选值: en, fr, id, ja, ko, pt-br, zh-cn, zh-tw, es, de, nl, it, th, el, uk, ar
+
+# 中日韩语言支持
+# 如果DefaultContentLanguage是中文、日文或韩文，设为true可确保摘要和字数统计正常
+hasCJKLanguage: true
+
+# Disqus评论系统配置
+disqusShortname: "sikuai2333"     # 更改为你的Disqus短名称
+
+# 分页设置
+pagination:
+  pagerSize: 5                    # 分页导航中显示的页码数量
+
+##########################################
+# 主题参数配置
+##########################################
+params:
+  # 主要内容区域
+  mainSections:
+    - "post"                     # 在首页和归档页面显示的内容区域
+    - "posts"                    # 可添加多个区域
+
+  # 特色图片字段
+  featuredImageField: "image"    # 文章特色图片使用的字段名
+
+  # RSS输出设置
+  rssFullContent: true           # RSS中包含完整内容
+
+  # 网站图标
+  favicon: "/favicon.png"        # 网站favicon图标路径
+
+  # 页脚设置
+  footer:
+    since: 2020                  # 网站创建年份，用于"© 2020-2023"格式
+    customText: ""               # 页脚自定义文本
+
+  # 日期格式设置
+  dateFormat:
+    published: "2006-01-02"      # 发布日期格式
+    lastUpdated: "2006-01-02"    # 最后更新日期格式
+
+  # 侧边栏设置
+  sidebar:
+    emoji: "🍥"                  # 侧边栏emoji
+    subtitle: "技术探索与生活记录"  # 侧边栏副标题
+    avatar:
+      enabled: true              # 启用头像
+      local: true                # 使用本地图片
+      src: "img/avatar.png"      # 头像图片路径
+
+  # 文章设置
+  article:
+    headingAnchor: false         # 标题锚点链接
+    math: false                  # 数学公式支持
+    toc: true                    # 目录
+    readingTime: true            # 显示阅读时间
+    license:
+      enabled: true              # 启用许可证信息
+      default: "Licensed under CC BY-NC-SA 4.0"  # 默认许可证文本
+
+  # 评论系统设置
+  comments:
+    enabled: true                # 启用评论系统
+    provider: "disqus"           # 评论提供商，可选：disqus, utterances, remark42等
+
+    # Disqus评论配置 (只有当provider = "disqus"时使用)
+    disqusjs:
+      shortname: ""              # Disqus短名称
+      apiUrl: ""
+      apiKey: ""
+      admin: ""
+      adminLabel: ""
+
+    # Utterances评论配置 (只有当provider = "utterances"时使用)
+    utterances:
+      repo: ""                   # GitHub仓库，格式: 用户名/仓库名
+      issueTerm: "pathname"      # 文章和issue关联方式
+      label: ""                  # GitHub issue标签
+
+    # 其他评论系统配置...
+    # (为简洁起见省略了部分配置，有需要时可添加)
+
+  # 小工具配置
+  widgets:
+    # 首页小工具
+    homepage:
+      - type: "search"           # 搜索工具
+      
+      - type: "archives"         # 归档工具
+        params:
+          limit: 10              # 显示的归档数量限制
+      
+      - type: "categories"       # 分类工具
+        params:
+          limit: 10              # 显示的分类数量限制
+      
+      - type: "tag-cloud"        # 标签云工具
+        params:
+          limit: 20              # 显示的标签数量限制
+    
+    # 页面小工具
+    page:
+      - type: "toc"              # 目录工具
+
+  # OpenGraph社交媒体设置
+  opengraph:
+    twitter:
+      site: ""                   # 你的Twitter用户名
+      card: "summary_large_image" # 卡片类型
+
+  # 默认图片设置
+  defaultImage:
+    opengraph:
+      enabled: false             # 启用默认OpenGraph图片
+      local: false               # 使用本地图片
+      src: ""                    # 图片路径
+
+  # 颜色方案设置
+  colorScheme:
+    toggle: true                 # 显示颜色方案切换按钮
+    default: "auto"              # 默认颜色方案: auto, light, dark
+
+  # 图像处理设置
+  imageProcessing:
+    cover:
+      enabled: true              # 处理封面图像
+    content:
+      enabled: true              # 处理内容中的图像 
