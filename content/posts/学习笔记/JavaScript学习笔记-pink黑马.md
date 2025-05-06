@@ -2,10 +2,11 @@
 title: JavaScript学习笔记
 date: 2025-01-15
 categories:
-- 学习笔记
+  - 学习笔记
 tags:
-- blog
-- 学习笔记
+  - blog
+  - 学习笔记
+lastmod: 2025-05-06T00:26:30.587Z
 ---
 # 1. 视频链接
 

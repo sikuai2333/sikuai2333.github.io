@@ -1,11 +1,12 @@
 ---
 title: 某cms渗透菜鸡复盘
 tags:
-- 日常
-- blog
-- 安全技术
+  - 日常
+  - blog
+  - 安全技术
 categories:
-- 技术
+  - 系统运维
+  - 开发技术
 keywords: 某cms渗透菜鸡复盘
 description: 某cms渗透菜鸡复盘
 top_img: https://img.gumengya.com/api/mc/16.jpg
@@ -16,11 +17,12 @@ copyright_author: sikuai
 copyright_author_href: https://sikuai2333.github.io
 highlight_shrink: false
 date: 2023-07-30 08:23:31
-updated: null
-copyright_url: null
-copyright_info: null
-aside: null
-abcjs: null
+updated: 
+copyright_url: 
+copyright_info: 
+aside: 
+abcjs: 
+lastmod: 2025-05-06T06:39:12.269Z
 ---
 # 1. 过程复现
 

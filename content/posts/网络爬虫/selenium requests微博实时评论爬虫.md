@@ -7,18 +7,19 @@ toc: true
 mathjax: false
 date: 2022-09-21 07:09:28
 tags:
-- python
-- 爬虫
-- blog
-- 网络爬虫
+  - python
+  - 爬虫
+  - blog
+  - 网络爬虫
 categories:
-- 技术
+  - 网络爬虫
+lastmod: 2025-05-06T06:35:08.567Z
 ---
-## 起因
+## 0.1. 起因
 
 安徽国庆部分高校只放假三天，微博话题下评论区一堆“美好的祝福”，想起之前爬取b站评论做情感分析总是没有合适的训练数据，遂爬取。（2023.1.19更新一次，requests的可能排版有些问题）
 
-## selenium爬取
+## 0.2. selenium爬取
 
 因为微博实时的话题评论是异步加载，下滑刷新才可以获取其他评论，所以一开始打算用selenium搭配xpath获取所有信息。
 
@@ -94,7 +95,7 @@ while True:
 
 <center>但是这样效率貌似很慢</center>
 
-## requests爬取
+## 0.3. requests爬取
 
 因为selenium虽然很直观，但奈何我功力不够，不能最大化利用，于是打开burpsuit开始抓包\
 ![](https://s2.loli.net/2022/09/21/ulf2dqaJpjWLiDE.jpg)

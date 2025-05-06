@@ -2,10 +2,11 @@
 title: selenium连接已开启的chrome浏览器
 date: 2023-12-08
 categories:
-- 网络爬虫
+  - 网络爬虫
 tags:
-- blog
-- 网络爬虫
+  - blog
+  - 网络爬虫
+lastmod: 2025-05-06T00:29:39.860Z
 ---
 chromedrive：下载安装配置Path，不赘述\
 对于chrome，找到安装位置，使用命令行

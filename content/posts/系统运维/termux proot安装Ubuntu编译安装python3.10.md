@@ -1,12 +1,12 @@
 ---
 title: termux proot安装Ubuntu编译安装python3.10
 tags:
-- termux
-- python
-- blog
-- 系统运维
+  - termux
+  - python
+  - blog
+  - 系统运维
 categories:
-- 技术
+  - 系统运维
 keywords: termux
 description: termux使用proot安装Ubuntu，编译安装python3.10
 top_img: https://img.gumengya.com/api/mc/108.jpg
@@ -17,11 +17,12 @@ copyright_author: sikuai
 copyright_author_href: https://sikuai2333.github.io
 highlight_shrink: false
 date: 2023-07-29 08:11:02
-updated: null
-copyright_url: null
-copyright_info: null
-aside: null
-abcjs: null
+updated: 
+copyright_url: 
+copyright_info: 
+aside: 
+abcjs: 
+lastmod: 2025-05-06T06:37:42.980Z
 ---
 > 视频教程
 

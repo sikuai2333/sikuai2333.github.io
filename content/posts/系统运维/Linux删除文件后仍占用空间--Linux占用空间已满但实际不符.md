@@ -2,32 +2,31 @@
 title: Linux删除文件后仍占用空间--Linux占用空间已满但实际不符
 date: 2023-04-12
 updated: 2023-04-12
-comments: true
 description: Linux删除文件后仍占用空间
 keywords: 踩坑
 author: 四块
 top: false
 cover: https://s2.loli.net/2023/04/12/C8AVeFymOYl1RIM.png
-toc: true
 mathjax: false
-img: null
-coverImg: null
-summary: null
+img: 
+coverImg: https://s2.loli.net/2023/04/12/C8AVeFymOYl1RIM.png
 tags:
-- 踩坑
-- Linux
-- 服务器
-- blog
-- 系统运维
+  - 踩坑
+  - Linux
+  - 服务器
+  - blog
+  - 系统运维
 categories:
-- 技术
+  - 开发技术
+  - 系统运维
+lastmod: 2025-05-06T06:37:24.582Z
 ---
-# 问题描述
+# 1. 问题描述
 
 我在服务器搭建AriaNg服务，下载了大约8G的文件，打包上传阿里云盘后在宝塔将文件删除，因为服务器剩余空间只有29G，所以在意了一下空间大小，发现删除后占用空间仍然39G，查阅一番教程记录下来。\
 ![](https://s2.loli.net/2023/04/12/C8AVeFymOYl1RIM.png)
 
-# 解决办法
+# 2. 解决办法
 
 \#先记录一下排查空间的办法
 

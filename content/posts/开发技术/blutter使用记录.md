@@ -2,10 +2,11 @@
 title: blutter使用记录
 date: 2025-02-08
 categories:
-- 开发技术
+  - 开发技术
 tags:
-- blog
-- 开发技术
+  - blog
+  - 开发技术
+lastmod: 2025-05-06T00:30:04.505Z
 ---
 # 1. ubuntu20环境安装(失败，直接跳debian部分)
 

@@ -1,12 +1,12 @@
 ---
 title: 借助cloudflare实现零成本内网穿透
 tags:
-- cloudflare
-- 内网穿透
-- blog
-- 网站建设
+  - cloudflare
+  - 内网穿透
+  - blog
+  - 网站建设
 categories:
-- 技术
+  - 网站建设
 keywords: 借助cloudflare实现零成本内网穿透
 description: 借助cloudflare实现零成本内网穿透
 top_img: https://s2.loli.net/2023/05/27/8iSsGB6PFvadWCX.png
@@ -17,11 +17,12 @@ copyright_author: sikuai
 copyright_author_href: https://sikuai2333.github.io
 highlight_shrink: false
 date: 2023-05-27 16:32:07
-updated: null
-copyright_url: null
-copyright_info: null
-aside: null
-abcjs: null
+updated: 
+copyright_url: 
+copyright_info: 
+aside: 
+abcjs: 
+lastmod: 2025-05-06T06:35:48.894Z
 ---
 <strong>非零基础，不提创建域名、配置DNS的事了</strong>\ <strong>免费域名freenom，每年续一次</strong>\ <strong>免费CDN，就是这里的cloud flare</strong>\ <strong>注册PayPal（跟着教程走，后续如果不用付款就不用）</strong>
 

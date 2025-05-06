@@ -1,14 +1,14 @@
 ---
 title: NoneBot搭配gocqhttp创建QQ机器人
 tags:
-- QQ机器人
-- nonebot
-- go-cqhttp
-- python
-- blog
-- 开发技术
+  - QQ机器人
+  - nonebot
+  - go-cqhttp
+  - python
+  - blog
+  - 开发技术
 categories:
-- 技术
+  - 开发技术
 keywords: qq机器人
 description: NoneBot搭配gocqhttp创建QQ机器人
 top_img: https://img.gumengya.com/api/mc/11.jpg
@@ -19,20 +19,21 @@ copyright_author: sikuai
 copyright_author_href: https://sikuai2333.github.io
 highlight_shrink: false
 date: 2023-07-30 08:16:02
-updated: null
-aside: null
-abcjs: null
+updated: 
+aside: 
+abcjs: 
+lastmod: 2025-05-06T06:33:55.862Z
 ---
 <font color="#e36c09">原本零零散散写过一些脚本，有的年久失修，有的代码不规范，趁假期全部解决并移入家里云。适当添加新功能</font>
 
-## 搭建环境
+## 0.1. 搭建环境
 
 * 服务器系统Ubuntu-server 22.04.1
 * python版本3.10.11(官方要求大于3.7还是3.8忘了)
 
-## 重新创建NoneBot
+## 0.2. 重新创建NoneBot
 
-### 首先创建venv虚拟环境^\[https://zhuanlan.zhihu.com/p/341481537]
+### 0.2.1. 首先创建venv虚拟环境^\[https://zhuanlan.zhihu.com/p/341481537]
 
 ```bash
 # 安装venv
@@ -48,7 +49,7 @@ source ./qqbot/bin/activate
 deactivate
 ```
 
-### 安装NoneBot
+### 0.2.2. 安装NoneBot
 
 首先进入上面的虚拟环境，然后安装pipx 官方文档^\[https://nonebot.dev/docs/quick-start]
 
@@ -83,7 +84,7 @@ nb run --reload
 
 ***
 
-### 下载运行go-cqhttp
+### 0.2.3. 下载运行go-cqhttp
 
 ```shell
 GitHub官方链接

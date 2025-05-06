@@ -5,15 +5,23 @@
 social:
 - identifier: github     # 链接的唯一标识符
   name: GitHub           # 显示的名称
-  url: https://github.com/CaiJimmy/hugo-theme-stack  # 链接地址
+  url: https://github.com/sikuai2333  # 链接地址
   params:
     icon: brand-github   # 图标名称，使用Tabler图标集
 
-- identifier: twitter    # 链接的唯一标识符
-  name: Twitter          # 显示的名称
-  url: https://twitter.com  # 链接地址
+
+- identifier: bilibili    # 链接的唯一标识符
+  name: Bilibili          # 显示的名称
+  url: https://space.bilibili.com/274581343  # 链接地址
   params:
-    icon: brand-twitter  # 图标名称，使用Tabler图标集
+    icon: bilibili # 图标名称，使用Tabler图标集
+
+- identifier: mail    # 链接的唯一标识符
+  name: Mail           # 显示的名称
+  url: mailto:2016828100@qq.com  # 链接地址
+  params:
+    icon: mail  # 图标名称，使用Tabler图标集
+
 
 # 提示: 添加更多社交媒体可复制上面的模板
-# 常用图标: brand-github, brand-twitter, brand-facebook, brand-instagram, brand-linkedin, brand-youtube, mail, rss
+# 图标放在static/icons/

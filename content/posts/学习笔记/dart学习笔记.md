@@ -2,11 +2,14 @@
 title: dart学习笔记
 date: 2025-01-21
 categories:
-- 学习笔记
+  - 学习笔记
 tags:
-- blog
-- 学习笔记
+  - blog
+  - 学习笔记
+lastmod: 2025-05-06T00:26:37.627Z
 ---
+# 视频链接
+
 https://www.bilibili.com/video/BV1RZ421p7BL
 
 # 1. main函数

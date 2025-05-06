@@ -2,12 +2,13 @@
 title: flutter学习笔记
 date: 2025-04-01
 categories:
-- 学习笔记
+  - 学习笔记
 tags:
-- blog
-- 学习笔记
+  - blog
+  - 学习笔记
+lastmod: 2025-05-06T00:26:18.487Z
 ---
-# 1. 一
+# 1. 视频链接
 
 https://www.bilibili.com/video/BV1RZ421p7BL
 

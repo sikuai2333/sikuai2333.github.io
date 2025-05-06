@@ -6,26 +6,27 @@ cover: false
 toc: true
 mathjax: false
 date: 2022-12-12 12:12:12
-img: null
-coverImg: null
-password: null
-summary: null
+img: 
+coverImg: 
+password: 
+summary: 
 tags:
-- python
-- 爬虫
-- uniapp
-- blog
-- 网络爬虫
+  - python
+  - 爬虫
+  - uniapp
+  - blog
+  - 网络爬虫
 categories:
-- 技术
+  - 网络爬虫
+lastmod: 2025-05-06T06:35:31.832Z
 ---
 <strong>此文章仅作为本人思路处理记录，不做任何其他用途</strong>
 
-# 事情起因
+# 1. 事情起因
 
 在某天下午，一个好友给我发来两个涩涩软件，问我能不能破解，对于这种伤身的事情，我自然是义正言辞的回绝了，但是出于对软件本身的安全防护，以及整个流程的处理的好奇，我安装了这两个软件/doge。
 
-# 开始整活
+# 2. 开始整活
 
 \#第一步 MT拆包看一眼结构，好方便下手，发现是uniapp做的（其实特征还是挺明显的），软件目录有dc、io等文件夹，assets中有几个uni开头的js，以及.......看图\
 ![avatar][base64str_1]\
@@ -155,7 +156,7 @@ uid=0&did=xxxxxxxx&key=xxxxxxxxxxxx&page=1
 <strong>此处的did使用时间戳的接口直接获取不重样</strong>\
 顺带提一句，兄弟父子页面传参还是得注意，老是忘
 
-# 结束
+# 3. 结束
 
 终于是搞完了，除了UI有些闹心以为，软件勉强能看，趁接口还没失效，又赶了一个python脚本，批量下载服务器上的视频，for遍历获取视频id，ffmpeg下载m3u8，单线程的原因（主要是怕ban ip）仅作为测试，资源仅作为测试，并没有实际拿到手。\
 文章记录到这里，接近尾声，很高兴你能看到这里，亦或者是我作为思路的备份，将它记录下来。此文章仅作为技术探讨，一个小菜鸡的求学之路，实际操作，请遵守当地的法律法规，对违法爬虫说不，对黄赌毒说不！

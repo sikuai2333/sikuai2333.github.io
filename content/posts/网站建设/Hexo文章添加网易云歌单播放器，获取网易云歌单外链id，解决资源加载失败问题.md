@@ -1,13 +1,13 @@
 ---
 title: Hexo文章添加网易云歌单播放器，获取网易云歌单外链id，解决资源加载失败问题
 tags:
-- 博客美化
-- 前端
-- blog
-- 网站建设
+  - 博客美化
+  - 前端
+  - blog
+  - 网站建设
 categories:
-- 博客美化
-- 代码
+  - 博客美化
+  - 网站建设
 keywords: 网易云,Hexo
 description: 获取网易云歌单外链id，解决资源加载失败问题
 top_img: https://s2.loli.net/2023/05/18/auWTNJO3bUADYMr.png
@@ -15,14 +15,14 @@ comments: false
 cover: https://s2.loli.net/2023/05/18/auWTNJO3bUADYMr.png
 copyright: true
 copyright_author: sikuai
-copyright_author_href: https://sikuai2333.github.io
 highlight_shrink: false
 date: 2023-05-18 19:36:30
-updated: null
-copyright_url: null
-copyright_info: null
-aside: null
-abcjs: null
+updated: 
+copyright_url: 
+copyright_info: 
+aside: 
+abcjs: 
+lastmod: 2025-05-06T06:36:39.027Z
 ---
 # 1. 起因
 

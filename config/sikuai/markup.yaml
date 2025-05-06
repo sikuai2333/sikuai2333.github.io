@@ -22,7 +22,7 @@ goldmark:
 tableOfContents:
   endLevel: 4       # 目录包含的最低级别标题 (h4)
   ordered: false     # 使用有序列表 (ol)，false为无序列表(ul)
-  startLevel: 2     # 目录包含的最高级别标题 (h2)
+  startLevel: 1     # 目录包含的最高级别标题 (h2)
 
 # 代码高亮配置
 highlight:

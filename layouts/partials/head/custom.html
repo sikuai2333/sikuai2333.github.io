@@ -1,0 +1,127 @@
+<!-- 确保自定义JS在所有页面类型上都加载 -->
+<script src="{{ "js/custom.js" | relURL }}"></script>
+
+<!-- 添加内联脚本将问候语添加到个人资料卡中 -->
+<script>
+    // 向个人资料卡添加问候语胶囊
+    (function() {
+        // 页面加载完成后执行
+        window.addEventListener('DOMContentLoaded', function() {
+            setTimeout(function() {
+                // 获取个人资料卡
+                var profileCard = document.querySelector('.profile-card');
+                if (!profileCard) {
+                    console.log("找不到个人资料卡元素");
+                    return;
+                }
+                
+                // 检查是否已有问候语胶囊
+                if (profileCard.querySelector('.greeting-pill')) {
+                    return;
+                }
+                
+                console.log("添加问候语胶囊到个人资料卡...");
+                
+                // 创建问候语胶囊
+                var pill = document.createElement('div');
+                pill.className = 'greeting-pill';
+                
+                // 设置胶囊样式
+                pill.style.position = 'absolute';
+                pill.style.top = '10px';
+                pill.style.left = '50%';
+                pill.style.transform = 'translateX(-50%)';
+                pill.style.backgroundColor = 'rgba(255, 255, 255, 0.85)';
+                pill.style.color = '#333';
+                pill.style.padding = '6px 15px';
+                pill.style.borderRadius = '20px';
+                pill.style.boxShadow = '0 2px 8px rgba(0, 0, 0, 0.15)';
+                pill.style.zIndex = '10';
+                pill.style.fontSize = '14px';
+                pill.style.fontWeight = '500';
+                pill.style.textAlign = 'center';
+                pill.style.backdropFilter = 'blur(4px)';
+                pill.style.WebkitBackdropFilter = 'blur(4px)';
+                pill.style.transition = 'all 0.3s ease';
+                pill.style.border = '1px solid rgba(165, 142, 146, 0.3)';
+                
+                // 深色模式检测
+                if (document.documentElement.dataset.scheme === 'dark') {
+                    pill.style.backgroundColor = 'rgba(60, 60, 60, 0.85)';
+                    pill.style.color = '#f0f0f0';
+                }
+                
+                // 添加悬停效果
+                pill.onmouseover = function() {
+                    this.style.boxShadow = '0 4px 12px rgba(0, 0, 0, 0.25)';
+                    this.style.backgroundColor = document.documentElement.dataset.scheme === 'dark' 
+                        ? 'rgba(70, 70, 70, 0.9)' 
+                        : 'rgba(255, 255, 255, 0.95)';
+                };
+                
+                pill.onmouseout = function() {
+                    this.style.boxShadow = '0 2px 8px rgba(0, 0, 0, 0.15)';
+                    this.style.backgroundColor = document.documentElement.dataset.scheme === 'dark' 
+                        ? 'rgba(60, 60, 60, 0.85)' 
+                        : 'rgba(255, 255, 255, 0.85)';
+                };
+                
+                // 根据时间获取问候语
+                var hour = new Date().getHours();
+                var greeting = "";
+                
+                if (hour >= 5 && hour < 12) {
+                    greeting = "早晨是最佳的学习时间";
+                } else if (hour >= 12 && hour < 14) {
+                    greeting = "中午好，注意休息眼睛";
+                } else if (hour >= 14 && hour < 18) {
+                    greeting = "下午好，坚持学习，成果在等着你";
+                } else if (hour >= 18 && hour < 23) {
+                    greeting = "晚上好，放松心情，享受阅读";
+                } else if (hour >= 23 || hour < 1) {
+                    greeting = "夜深了，该睡觉了";
+                } else {
+                    greeting = "凌晨好，休息是为了更好的前行";
+                }
+                
+                pill.textContent = greeting;
+                
+                // 将问候语添加到个人资料卡
+                profileCard.appendChild(pill);
+                console.log("问候语胶囊已添加到个人资料卡");
+                
+                // 每分钟更新一次问候语
+                setInterval(function() {
+                    var currentHour = new Date().getHours();
+                    var newGreeting = "";
+                    
+                    if (currentHour >= 5 && currentHour < 12) {
+                        newGreeting = "早晨是最佳的学习时间";
+                    } else if (currentHour >= 12 && currentHour < 14) {
+                        newGreeting = "中午好，注意休息眼睛";
+                    } else if (currentHour >= 14 && currentHour < 18) {
+                        newGreeting = "下午好，坚持学习，成果在等着你";
+                    } else if (currentHour >= 18 && currentHour < 23) {
+                        newGreeting = "晚上好，放松心情，享受阅读";
+                    } else if (currentHour >= 23 || currentHour < 1) {
+                        newGreeting = "夜深了，该睡觉了";
+                    } else {
+                        newGreeting = "凌晨好，休息是为了更好的前行";
+                    }
+                    
+                    if (newGreeting !== greeting) {
+                        pill.textContent = newGreeting;
+                        greeting = newGreeting;
+                    }
+                }, 60000);
+            }, 500);
+        });
+        
+        // 作为备份，如果DOMContentLoaded已经触发，则直接执行
+        if (document.readyState === 'interactive' || document.readyState === 'complete') {
+            var event = document.createEvent('Event');
+            event.initEvent('DOMContentLoaded', true, true);
+            window.document.dispatchEvent(event);
+        }
+    })();
+</script> 

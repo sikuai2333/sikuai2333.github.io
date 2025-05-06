@@ -1,11 +1,12 @@
 ---
-title: 1. 变量
+title: 马士兵7天JAVA
 date: 2025-01-18
 categories:
-- 学习笔记
+  - 学习笔记
 tags:
-- blog
-- 学习笔记
+  - blog
+  - 学习笔记
+lastmod: 2025-05-06T00:26:43.944Z
 ---
 # 1. 变量
 

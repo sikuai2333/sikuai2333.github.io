@@ -1,0 +1,31 @@
+// 根据当前时间设置不同的问候语
+function updateGreeting() {
+    const profileCard = document.querySelector('.profile-card');
+    if (!profileCard) return;
+
+    const hour = new Date().getHours();
+    let greeting = '';
+
+    if (hour >= 0 && hour < 5) {
+        greeting = "深夜了，注意休息哦";
+    } else if (hour >= 5 && hour < 11) {
+        greeting = "一日之际在于晨";
+    } else if (hour >= 11 && hour < 14) {
+        greeting = "中午好，休息一下吧";
+    } else if (hour >= 14 && hour < 18) {
+        greeting = "下午好，继续加油";
+    } else if (hour >= 18 && hour < 22) {
+        greeting = "晚上好，放松一下";
+    } else {
+        greeting = "夜深了，早点休息";
+    }
+
+    profileCard.setAttribute('data-tagline', greeting);
+}
+
+// 页面加载完成后执行
+document.addEventListener('DOMContentLoaded', function() {
+    updateGreeting();
+    // 每分钟更新一次问候语
+    setInterval(updateGreeting, 60000);
+}); 

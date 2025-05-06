@@ -6,17 +6,19 @@ cover: https://s2.loli.net/2023/03/25/tJxSeioa5C6lwBc.png
 toc: true
 mathjax: false
 date: 2022-12-14 10:57:12
-img: null
-coverImg: null
-password: null
-summary: null
+img: 
+coverImg: 
+password: 
+summary: 
 tags:
-- python
-- 工具
-- blog
-- 开发技术
+  - python
+  - 工具
+  - blog
+  - 开发技术
 categories:
-- 技术
+  - 实用工具
+  - 开发技术
+lastmod: 2025-05-06T06:39:22.069Z
 ---
 # 1. 我的需求
 

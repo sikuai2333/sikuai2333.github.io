@@ -2,10 +2,11 @@
 title: 远程adb连接frida
 date: 2025-02-08
 categories:
-- 开发技术
+  - 开发技术
 tags:
-- blog
-- 开发技术
+  - blog
+  - 开发技术
+lastmod: 2025-05-06T00:29:57.842Z
 ---
 # 1. 远程adb
 

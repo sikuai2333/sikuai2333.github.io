@@ -4,21 +4,21 @@ author: 四块
 top: false
 cover: false
 toc: true
-mathjax: false
 date: 2022-12-14 10:57:12
-img: null
-coverImg: null
-password: null
-summary: null
+c: 
+coverImg: 
+password: 
+summary: 
 tags:
-- python
-- 爬虫
-- blog
-- 网络爬虫
+  - python
+  - 爬虫
+  - blog
+  - 网络爬虫
 categories:
-- 技术
+  - 网络爬虫
+lastmod: 2025-05-06T06:35:01.372Z
 ---
-# 起因
+# 1. 起因
 
 某天闲来无事，想着看看现在大家每天都在关注些什么，遂打开浏览器，查找热搜，偶然间看到下面这个网站，于是心生一计，打算用python爬取网站生成词云，看看关注最多的事情是什么。
 
@@ -26,17 +26,17 @@ categories:
 https://tophub.today/c/ent
 ```
 
-## 需要工具
+## 1.1. 需要工具
 
 python3环境（会pip安装包）\
 会ctrl CV的手\
 \~~脑子~~ （不用也行）
 
-# 开整
+# 2. 开整
 
 简单浏览一下，发现网页为动态加载，可能是<strong>加载框架+接口获取数据</strong>（参考 [zoomeye白嫖万条数据](https://mianfeisong.cf/2022/11/25/zoomeye%E8%87%AA%E5%8A%A8%E9%81%8D%E5%8E%86%E5%85%A8%E7%90%83%E5%9C%B0%E5%9D%80/)），也可能是<strong>获取页面</strong>，这里直接打开bp抓包，重放器看一眼发现请求参数是（/c/ent?p=N），很明显是动态加载页面，那么我们可以<strong>使用selenium模拟浏览器下滑加载所有网页</strong>，也可以<strong>使用requests请求网页获取</strong>，此处我们选择requests的方法。
 
-## Burpsuit请求参数
+## 2.1. Burpsuit请求参数
 
 ```
 GET /c/ent?p=24 HTTP/2
@@ -56,7 +56,7 @@ res = requests.get(url=url,headers=headers)
 print(res.text)
 ```
 
-## 确定页数
+## 2.2. 确定页数
 
 因为get的参数只有一个p（ent为娱乐，此处只爬取该页面），所以肯定是要确定页数，这里我们可以检测为空就跳出循环，也可以计算页数，根据xpath获取到个数（右键->检查，右键->复制完整xpath）
 

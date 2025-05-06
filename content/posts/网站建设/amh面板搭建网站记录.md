@@ -1,11 +1,9 @@
 ---
 title: amh面板搭建网站记录
 tags:
-- 前端
-- blog
-- 网站建设
-categories:
-- 技术
+  - 前端
+  - blog
+  - 网站建设
 keywords: amh面板,伪静态
 description: amh面板搭建网站记录
 top_img: https://v2.api-m.com/api/wallpaper?return=302
@@ -16,18 +14,19 @@ copyright_author: sikuai
 copyright_author_href: https://sikuai2333.github.io
 highlight_shrink: false
 date: 2023-10-10 11:06:47
-updated: null
-copyright_url: null
-copyright_info: null
-aside: null
-abcjs: null
+updated: 
+copyright_url: 
+copyright_info: 
+aside: 
+abcjs: 
+lastmod: 2025-05-06T06:33:03.897Z
 ---
-## 伪静态设置
+## 0.1. 伪静态设置
 
 amh7.0并没有自带伪静态规则，搭建typecho一访问后台就404，只能自己手动添加伪静态规则了。\
 下面是搜集到的一些常见伪静态规则，可以自行修改。
 
-### 修改伪静态规则
+### 0.1.1. 修改伪静态规则
 
 * 命令行的方式
 
@@ -41,7 +40,7 @@ vim name.conf
 * 图形界面的方式\
   打开“网站”，点击“amh.conf”，安装rewrite，点击新建，起名后填入伪静态规则，设置生效，重启nginx。
 
-### 常见的伪静态
+### 0.1.2. 常见的伪静态
 
 * Typecho伪静态规则
 

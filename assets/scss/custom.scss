@@ -1,3 +1,296 @@
 /*
     You can add your own custom styles here.
 */
+
+/* 移除整体容器额外的顶部padding，让布局恢复正常 */
+.container {
+    padding-top: 0;
+}
+
+/* PC端样式 */
+@media (min-width: 769px) {
+    /* PC端设置侧边栏宽度 */
+    html {
+        --left-sidebar-width: 20%;
+    }
+    
+    /* 大屏幕略微调整 */
+    @media (min-width: 1280px) {
+        html {
+            --left-sidebar-width: 20%;
+        }
+    }
+    
+    /* 中等屏幕调整 */
+    @media (min-width: 769px) and (max-width: 1279px) {
+        html {
+            --left-sidebar-width: 25%;
+        }
+    }
+    
+    /* 调整左侧边栏整体样式 - 与右侧边栏保持一致 */
+    .sidebar.left-sidebar {
+        padding: 30px 20px;
+        background-color: var(--card-background);
+        border-radius: 12px;
+        margin-top: var(--main-top-padding);
+        width: var(--left-sidebar-width) !important;
+        max-width: none !important;
+    }
+    
+    /* 确保左侧边栏在所有页面类型中都具有正确宽度 */
+    .container .sidebar.left-sidebar {
+        width: var(--left-sidebar-width) !important;
+        max-width: none !important;
+    }
+    
+    /* 确保在文章页面中左侧边栏也有正确宽度 */
+    body.article-page .sidebar.left-sidebar {
+        width: var(--left-sidebar-width) !important;
+        max-width: none !important;
+        position: sticky;
+        top: var(--main-top-padding);
+    }
+    
+    /* 确保文章页面的main区域有正确的宽度和边距 */
+    body.article-page .main {
+        flex-grow: 1;
+        width: auto !important;
+    }
+}
+
+/* 移动端样式 - 完全独立设置 */
+@media (max-width: 768px) {
+    /* 移动端侧边栏宽度设置 */
+    .sidebar.left-sidebar {
+        width: 90% !important;
+        max-width: 400px !important;
+        margin: 0 auto 20px !important;
+        padding: 30px 20px;
+        background-color: var(--card-background);
+        border-radius: 12px;
+    }
+    
+    /* 确保所有上下文中侧边栏宽度一致 */
+    body .sidebar.left-sidebar,
+    .container .sidebar.left-sidebar,
+    body.article-page .sidebar.left-sidebar {
+        width: 90% !important;
+        max-width: 400px !important;
+    }
+    
+    /* 调整容器布局以适应移动端 */
+    .container {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+    
+    /* 缩小个人资料卡高度 */
+    .profile-card {
+        height: 240px;
+    }
+    
+    /* 移动设备上问候语胶囊调整 */
+    .greeting-pill {
+        max-width: 90%;
+        font-size: 12px;
+        padding: 4px 12px;
+    }
+    
+    /* 修改社交媒体图标位置 */
+    .menu-social {
+        justify-content: flex-start;
+        margin-left: 10px;
+    }
+}
+
+/* 问候语胶囊样式 */
+.greeting-pill {
+    position: absolute;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba(255, 255, 255, 0.85);
+    color: var(--card-text-color-main);
+    padding: 6px 15px;
+    border-radius: 20px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    z-index: 10;
+    font-size: 14px;
+    font-weight: 500;
+    text-align: center;
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    transition: all 0.3s ease;
+    border: 1px solid rgba(165, 142, 146, 0.3);
+    max-width: 80%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.greeting-pill:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+    background-color: rgba(255, 255, 255, 0.95);
+}
+
+/* 深色模式下的问候语胶囊 */
+:root[data-scheme="dark"] .greeting-pill {
+    background-color: rgba(60, 60, 60, 0.85);
+    color: #f0f0f0;
+    border-color: rgba(100, 100, 100, 0.5);
+}
+
+:root[data-scheme="dark"] .greeting-pill:hover {
+    background-color: rgba(70, 70, 70, 0.9);
+}
+
+/* 个性化侧边栏卡片效果 */
+.profile-card {
+    position: relative;
+    width: 100%;
+    transition: all 0.3s ease;
+    perspective: 1000px;
+    border-radius: 12px;
+    overflow: visible; /* 改为visible防止内容被裁剪 */
+    background-color: #a58e92;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    padding: 0;
+    margin-bottom: 20px;
+    height: 280px; /* 固定高度 */
+}
+
+/* 移除原来的伪元素问候语样式 */
+.profile-card::before {
+    content: none; /* 禁用原来的伪元素 */
+}
+
+.profile-card-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.8s;
+    transform-style: preserve-3d;
+}
+
+.profile-card:hover .profile-card-container {
+    transform: rotateY(180deg);
+}
+
+.profile-card-front, .profile-card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden; /* Safari */
+    border-radius: 12px;
+    background-color: var(--card-background);
+    overflow: hidden;
+}
+
+.profile-card-front {
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    transform: rotateY(0deg);
+}
+
+.profile-card-back {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 25px 20px;
+    transform: rotateY(180deg);
+}
+
+/* 修改签名样式为普通样式（移除电子banner效果） */
+.profile-bio {
+    color: var(--card-text-color-main);
+    font-size: 16px;
+    line-height: 1.6;
+    text-align: center;
+    padding: 8px;
+    margin: 0;
+    width: 100%;
+}
+
+.profile-bio p {
+    margin: 12px 0;
+}
+
+/* 调整头像和标题 */
+.sidebar header .site-avatar {
+    margin: 0 auto;
+    margin-top: 20px; /* 为顶部问候语留出空间 */
+}
+
+.sidebar header .site-meta {
+    margin-top: 10px;
+    text-align: center;
+}
+
+/* 增大网站标题字体 */
+.sidebar .site-name {
+    font-size: 1.6rem;
+}
+
+/* 调整动画效果 */
+.profile-card:hover .site-avatar {
+    transform: scale(0.8);
+    opacity: 0;
+    transition: all 0.4s ease;
+}
+
+.site-avatar {
+    transition: all 0.4s ease;
+}
+
+/* 社交媒体图标样式 */
+.menu-social {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    padding: 0;
+    margin: 0 0 20px;
+}
+
+.menu-social li a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background-color: var(--card-background);
+    border-radius: 50%;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    color: var(--body-text-color);
+}
+
+.menu-social li a:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15);
+    background-color: var(--accent-color);
+    color: white;
+}
+
+.menu-social svg {
+    width: 22px;
+    height: 22px;
+    stroke-width: 1.5;
+}
+
+/* 优化网站黑白模式下的卡片背景色 */
+:root[data-scheme="dark"] .profile-card {
+    background-color: rgba(80, 70, 72, 0.8);
+}
+
+:root[data-scheme="light"] .profile-card {
+    background-color: #a58e92;
+}

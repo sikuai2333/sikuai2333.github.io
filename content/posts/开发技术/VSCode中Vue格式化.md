@@ -2,10 +2,11 @@
 title: VSCode中Vue格式化
 date: 2023-03-14
 categories:
-- 开发技术
+  - 开发技术
 tags:
-- blog
-- 开发技术
+  - blog
+  - 开发技术
+lastmod: 2025-05-06T00:30:20.384Z
 ---
 简单贴一下settings.json配置，自行添加，插件安装了eslint和vetur
 

@@ -2,10 +2,11 @@
 title: 自建webdav存储文件
 date: 2024-09-30
 categories:
-- 系统运维
+  - 系统运维
 tags:
-- blog
-- 系统运维
+  - blog
+  - 系统运维
+lastmod: 2025-05-06T00:27:08.389Z
 ---
 # 1. 使用docker搭建
 

@@ -16,7 +16,7 @@ favicon: /favicon.png  # 浏览器标签页显示的图标
 
 # 页脚设置
 footer:
-  since: 2023  # 网站创建年份，显示为"© 2020-2023"
+  since: 2021  # 网站创建年份，显示为"© 2020-2023"
   customText: ''  # 页脚自定义文本
 
 # 日期格式设置
@@ -26,8 +26,13 @@ dateFormat:
 
 # 侧边栏设置
 sidebar:
-  emoji: 🍥  # 侧边栏emoji图标
+  emoji: 🏳️‍🌈  # 侧边栏emoji图标
   subtitle: 技术探索与生活记录  # 侧边栏副标题
+  tagline: 一日之际在于晨  # 卡片顶部标签文字
+  bio: | # 个人简介（卡片背面显示的签名）
+    欢迎来到我的博客，这里记录了我的技术探索和生活点滴。
+    
+    相信你可以在这里找到对你有用的知识和教程。
   avatar:  # 头像设置
     enabled: true  # 是否显示头像
     local: false  # true: 使用本地图片，false: 使用网络图片
@@ -127,7 +132,7 @@ comments:
     visitor: ''  # 访问量统计
     avatar: ''  # 头像
     emoji:  # emoji表情
-    - https://cdn.jsdelivr.net/gh/walinejs/emojis/weibo
+    - https://cdn.mengze.vip/gh/walinejs/emojis/weibo
     requiredMeta:  # 必填信息
     - name
     - email

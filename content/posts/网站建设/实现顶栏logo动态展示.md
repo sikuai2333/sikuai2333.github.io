@@ -1,14 +1,15 @@
 ---
 title: 实现顶栏logo动态展示
 tags:
-- 博客美化
-- 前端
-- styl
-- pug
-- blog
-- 网站建设
+  - 博客美化
+  - 前端
+  - styl
+  - pug
+  - blog
+  - 网站建设
 categories:
-- 博客美化
+  - 网站建设
+  - 博客美化
 keywords: 实现顶栏logo动态展示
 description: 实现顶栏logo动态展示
 top_img: https://s2.loli.net/2023/05/16/MTVUOApKsdC8qma.png
@@ -19,19 +20,15 @@ copyright_author: sikuai
 copyright_author_href: https://sikuai2333.github.io
 highlight_shrink: false
 date: 2023-05-16 12:55:39
-updated: null
-copyright_url: null
-copyright_info: null
-aside: null
-abcjs: null
+lastmod: 2025-05-06T06:36:09.856Z
 ---
-# 动态变化效果
+# 1. 动态变化效果
 
 ![](https://s2.loli.net/2023/05/16/MTVUOApKsdC8qma.png)
 
-# 思路
+# 2. 思路
 
-### pug文件
+### 2.1.1. pug文件
 
 ```pug
 //- themes\butterfly\layout\includes\header\nav.pug
@@ -47,7 +44,7 @@ nav#nav
 
 此处给a标签家里个class，方便添加样式，新增的hover\_logo路径需要去\_config.yml添加
 
-### 配置文件添加图标
+### 2.1.2. 配置文件添加图标
 
 ![](https://s2.loli.net/2023/05/16/1pv8tLdjfDAnENa.png)
 
@@ -60,7 +57,7 @@ nav:
   hover_logo: /img/home.png # image
 ```
 
-### 样式文件
+### 2.1.3. 样式文件
 
 下面是实现效果的样式
 
