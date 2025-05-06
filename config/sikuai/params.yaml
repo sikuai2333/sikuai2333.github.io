@@ -16,7 +16,7 @@ favicon: /favicon.png  # 浏览器标签页显示的图标
 
 # 页脚设置
 footer:
-  since: 2020  # 网站创建年份，显示为"© 2020-2023"
+  since: 2023  # 网站创建年份，显示为"© 2020-2023"
   customText: ''  # 页脚自定义文本
 
 # 日期格式设置
@@ -30,13 +30,13 @@ sidebar:
   subtitle: 技术探索与生活记录  # 侧边栏副标题
   avatar:  # 头像设置
     enabled: true  # 是否显示头像
-    local: true  # true: 使用本地图片，false: 使用网络图片
-    src: img/avatar.png  # 头像图片路径
+    local: false  # true: 使用本地图片，false: 使用网络图片
+    src: "https://q.qlogo.cn/headimg_dl?dst_uin=2016828100&spec=640&img_type=jpg"  # 头像图片路径
 
 # 文章页面设置
 article:
-  headingAnchor: false  # 是否为标题添加锚点链接
-  math: false  # 是否启用数学公式支持
+  headingAnchor: true  # 是否为标题添加锚点链接
+  math: true  # 是否启用数学公式支持
   readingTime: true  # 是否显示阅读时间估计
   license:  # 版权声明
     enabled: true  # 是否在文章底部显示版权信息
@@ -88,7 +88,7 @@ imageProcessing:
 
 # 评论系统设置
 comments:
-  enabled: true  # 是否启用评论系统
+  enabled: false  # 是否启用评论系统
   provider: disqus  # 评论服务提供商
 
   # DisqusJS评论设置
