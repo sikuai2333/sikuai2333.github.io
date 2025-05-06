@@ -1,0 +1,14 @@
+# 永久链接配置文件 - Stack主题 - Sikuai环境
+# 该文件定义了不同内容类型的URL路径格式
+
+post: /p/:slug/  # 博客文章的URL格式，如 /p/my-first-post/
+page: /:slug/    # 独立页面的URL格式，如 /about/
+
+# 可用变量:
+# :year - 文章年份 (2023)
+# :month - 文章月份 (01)
+# :day - 文章日期 (02)
+# :slug - 文章短标题
+# :filename - 文件名
+# :title - 文章标题
+# :sections - 内容分区

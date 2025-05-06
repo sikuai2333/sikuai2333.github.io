@@ -1,0 +1,19 @@
+# 导航菜单配置文件 - Stack主题 - Sikuai环境
+# 该文件定义网站顶部和侧边栏的导航链接
+
+# 社交媒体链接配置 (显示在侧边栏底部)
+social:
+- identifier: github     # 链接的唯一标识符
+  name: GitHub           # 显示的名称
+  url: https://github.com/CaiJimmy/hugo-theme-stack  # 链接地址
+  params:
+    icon: brand-github   # 图标名称，使用Tabler图标集
+
+- identifier: twitter    # 链接的唯一标识符
+  name: Twitter          # 显示的名称
+  url: https://twitter.com  # 链接地址
+  params:
+    icon: brand-twitter  # 图标名称，使用Tabler图标集
+
+# 提示: 添加更多社交媒体可复制上面的模板
+# 常用图标: brand-github, brand-twitter, brand-facebook, brand-instagram, brand-linkedin, brand-youtube, mail, rss

@@ -1,0 +1,175 @@
+############################################
+# 博客参数配置文件 - Stack主题 - Sikuai环境
+############################################
+
+# 首页显示的文章分类
+# 这些目录下的文章将显示在首页和归档页面
+mainSections:
+- post
+- posts
+
+# RSS输出设置
+rssFullContent: true  # 在RSS中包含完整内容
+
+# 网站图标
+favicon: /favicon.png  # 浏览器标签页显示的图标
+
+# 页脚设置
+footer:
+  since: 2020  # 网站创建年份，显示为"© 2020-2023"
+  customText: ''  # 页脚自定义文本
+
+# 日期格式设置
+dateFormat:
+  published: '2006-01-02'  # 文章发布日期格式
+  lastUpdated: 2006-01-02 15:04 MST  # 最后更新日期格式
+
+# 侧边栏设置
+sidebar:
+  emoji: 🍥  # 侧边栏emoji图标
+  subtitle: 技术探索与生活记录  # 侧边栏副标题
+  avatar:  # 头像设置
+    enabled: true  # 是否显示头像
+    local: true  # true: 使用本地图片，false: 使用网络图片
+    src: img/avatar.png  # 头像图片路径
+
+# 文章页面设置
+article:
+  headingAnchor: false  # 是否为标题添加锚点链接
+  math: false  # 是否启用数学公式支持
+  readingTime: true  # 是否显示阅读时间估计
+  license:  # 版权声明
+    enabled: true  # 是否在文章底部显示版权信息
+    default: Licensed under CC BY-NC-SA 4.0  # 默认版权声明文本
+
+# 小部件配置
+widgets:
+  # 首页小部件
+  homepage:
+  - type: search  # 搜索框
+  - type: archives  # 文章归档
+    params:
+      limit: 10  # 显示的归档数量
+  - type: categories  # 文章分类
+    params:
+      limit: 10  # 显示的分类数量
+  - type: tag-cloud  # 标签云
+    params:
+      limit: 20  # 显示的标签数量
+  
+  # 文章页面小部件
+  page:
+  - type: toc  # 目录
+
+# OpenGraph社交媒体设置
+opengraph:
+  twitter:
+    site: ''  # 你的Twitter用户名
+    card: summary_large_image  # 卡片类型: summary或summary_large_image
+
+# 默认图片设置
+defaultImage:
+  opengraph:
+    enabled: false  # 是否启用默认OpenGraph图片
+    local: false  # 是否使用本地图片
+    src: ''  # 图片路径
+
+# 颜色主题设置
+colorScheme:
+  toggle: true  # 是否显示暗色/亮色模式切换按钮
+  default: auto  # 默认颜色主题: auto, light, dark
+
+# 图像处理设置
+imageProcessing:
+  cover:
+    enabled: true  # 是否处理封面图像
+  content:
+    enabled: true  # 是否处理内容中的图像
+
+# 评论系统设置
+comments:
+  enabled: true  # 是否启用评论系统
+  provider: disqus  # 评论服务提供商
+
+  # DisqusJS评论设置
+  disqusjs:
+    shortname: ''  # Disqus短名称
+    apiUrl: ''
+    apiKey: ''
+    admin: ''
+    adminLabel: ''
+
+  # Utterances评论设置 (GitHub Issues)
+  utterances:
+    repo: ''  # GitHub仓库，格式: 用户名/仓库名
+    issueTerm: pathname  # 文章和issue关联方式
+    label: ''  # issue标签
+
+  # Remark42评论设置
+  remark42:
+    host: ''  # Remark42服务器地址
+    site: ''  # 站点ID
+    locale: ''  # 语言
+
+  # Vssue评论设置
+  vssue:
+    platform: ''  # 平台：github, gitlab等
+    owner: ''  # 仓库所有者
+    repo: ''  # 仓库名
+    clientId: ''  # OAuth应用ID
+    clientSecret: ''  # OAuth应用密钥
+    autoCreateIssue: false  # 是否自动创建issue
+
+  # Waline评论设置
+  waline:
+    serverURL: ''  # Waline服务器地址
+    lang: ''  # 语言
+    visitor: ''  # 访问量统计
+    avatar: ''  # 头像
+    emoji:  # emoji表情
+    - https://cdn.jsdelivr.net/gh/walinejs/emojis/weibo
+    requiredMeta:  # 必填信息
+    - name
+    - email
+    - url
+    placeholder: ''  # 评论框占位符
+    locale:
+      admin: Admin  # 管理员标签文本
+
+  # Twikoo评论设置
+  twikoo:
+    envId: ''  # 环境ID
+    region: ''  # 地区
+    path: ''  # 评论路径
+    lang: ''  # 语言
+
+  # Cactus评论设置
+  cactus:
+    defaultHomeserverUrl: https://matrix.cactus.chat:8448
+    serverName: cactus.chat
+    siteName: ''  # 站点名称
+
+  # Giscus评论设置 (GitHub Discussions)
+  giscus:
+    repo: ''  # GitHub仓库
+    repoID: ''  # 仓库ID
+    category: ''  # 分类名称
+    categoryID: ''  # 分类ID
+    mapping: ''  # 映射关系
+    lightTheme: ''  # 亮色主题
+    darkTheme: ''  # 暗色主题
+    reactionsEnabled: 1  # 是否启用反应
+    emitMetadata: 0  # 是否发送元数据
+
+  # Gitalk评论设置
+  gitalk:
+    owner: ''  # 仓库所有者
+    admin: ''  # 管理员
+    repo: ''  # 仓库名
+    clientID: ''  # OAuth应用ID
+    clientSecret: ''  # OAuth应用密钥
+
+  # Cusdis评论设置
+  cusdis:
+    host: ''  # 主机地址
+    id: ''  # 应用ID

@@ -1,0 +1,10 @@
+# Hugo模块配置文件 - Stack主题 - Sikuai环境
+# 该文件定义了网站使用的Hugo模块(主题)和导入的其他模块
+
+imports:
+- path: github.com/CaiJimmy/hugo-theme-stack/v3  # 导入Stack主题 v3版本
+
+# 模块系统允许你:
+# 1. 直接从GitHub等源导入主题，无需手动下载
+# 2. 可以方便地更新主题版本
+# 3. 可以导入多个模块并组合使用

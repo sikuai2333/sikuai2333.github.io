@@ -1,0 +1,35 @@
+# Markdown渲染配置文件 - Stack主题 - Sikuai环境
+# 该文件定义了Hugo如何将Markdown文件渲染为HTML
+
+# Goldmark渲染器配置 (Hugo默认的Markdown解析器)
+goldmark:
+  renderer:
+    unsafe: true  # 允许在Markdown中使用HTML标签，设为false会过滤掉HTML
+  extensions:
+    passthrough:
+      enable: true  # 启用自定义语法扩展
+      delimiters:   # 定义特殊语法的分隔符
+        block:      # 块级元素分隔符
+        - - \[      # LaTeX数学块开始分隔符
+          - \]      # LaTeX数学块结束分隔符
+        - - $$      # 另一种LaTeX数学块分隔符（开始）
+          - $$      # 另一种LaTeX数学块分隔符（结束）
+        inline:     # 内联元素分隔符
+        - - \(      # 内联LaTeX数学表达式开始
+          - \)      # 内联LaTeX数学表达式结束
+
+# 目录(TOC)生成配置
+tableOfContents:
+  endLevel: 4       # 目录包含的最低级别标题 (h4)
+  ordered: false     # 使用有序列表 (ol)，false为无序列表(ul)
+  startLevel: 2     # 目录包含的最高级别标题 (h2)
+
+# 代码高亮配置
+highlight:
+  noClasses: false            # 不使用CSS类进行高亮，改用行内样式
+  codeFences: true            # 启用代码围栏 ```语言
+  guessSyntax: true           # 尝试自动推断语法
+  lineNoStart: 1              # 行号起始值
+  lineNos: true               # 显示行号
+  lineNumbersInTable: true    # 在表格中显示行号和代码
+  tabWidth: 4                 # Tab的宽度
