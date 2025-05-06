@@ -3,7 +3,7 @@
 ##########################################
 
 # 站点基本信息
-baseurl: "https://sikua.fun"     # 网站的基本URL，部署前需修改
+baseurl: "https://sikuai.fun"     # 网站的基本URL，部署前需修改
 languageCode: "zh-cn"            # 网站的语言代码
 title: "四块的小窝"               # 网站标题
 
