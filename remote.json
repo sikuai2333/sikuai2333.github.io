@@ -1,0 +1,38 @@
+[
+  {
+    "title": "AI智能助手",
+    "image": "https://picsum.photos/400/300?random=1",
+    "url": "https://github.com/yourusername/ai-assistant",
+    "bgimage": "https://picsum.photos/600/400?random=1"
+  },
+  {
+    "title": "区块链钱包",
+    "image": "https://picsum.photos/400/300?random=2",
+    "url": "https://github.com/yourusername/crypto-wallet",
+    "bgimage": "https://picsum.photos/600/400?random=2"
+  },
+  {
+    "title": "实时协作编辑器",
+    "image": "https://picsum.photos/400/300?random=3",
+    "url": "https://github.com/yourusername/collab-editor",
+    "bgimage": "https://picsum.photos/600/400?random=3"
+  },
+  {
+    "title": "3D可视化引擎",
+    "image": "https://picsum.photos/400/300?random=4",
+    "url": "https://github.com/yourusername/3d-engine",
+    "bgimage": "https://picsum.photos/600/400?random=4"
+  },
+  {
+    "title": "智能家居平台",
+    "image": "https://picsum.photos/400/300?random=5",
+    "url": "https://github.com/yourusername/smart-home",
+    "bgimage": "https://picsum.photos/600/400?random=5"
+  },
+  {
+    "title": "数据可视化工具",
+    "image": "https://picsum.photos/400/300?random=6",
+    "url": "https://github.com/yourusername/data-viz",
+    "bgimage": "https://picsum.photos/600/400?random=6"
+  }
+]
