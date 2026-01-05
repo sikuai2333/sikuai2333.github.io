@@ -1,0 +1,123 @@
+{
+  "app": {
+    "name": "风华软件库",
+    "slogan": "2026，新年快乐",
+    "version": "1.0.0",
+    "share_text": "推荐一款超好用的软件库：风华软件库，下载地址：https://example.com"
+  },
+  "splash": {
+    "image": "https://picsum.photos/1080/1920",
+    "duration": 2000
+  },
+  "home": {
+    "title": "首页",
+    "slogan": "发现精彩内容",
+    "background_color": "#FFFFFF",
+    "banner": [
+      {
+        "image": "https://root-1321307941.cos.ap-shanghai.myqcloud.com/fdsqqtp.png",
+        "url": "https://www.baidu.com"
+      },
+      {
+        "image": "https://root-1321307941.cos.ap-shanghai.myqcloud.com/fdsqqtp.png",
+        "url": "https://www.baidu.com"
+      },
+      {
+        "image": "https://root-1321307941.cos.ap-shanghai.myqcloud.com/fdsqqtp.png",
+        "url": "https://www.baidu.com"
+      }
+    ],
+    "notice": "欢迎使用风华软件库，最新版本已发布！新年快乐，祝大家2026年万事如意！",
+    "recommend": [
+      {
+        "title": "推荐应用1",
+        "image": "https://root-1321307941.cos.ap-shanghai.myqcloud.com/fh/bghyxzw.png",
+        "url": "https://www.example.com/app1"
+      },
+      {
+        "title": "推荐应用2",
+        "image": "https://root-1321307941.cos.ap-shanghai.myqcloud.com/fh/bghyxzw.png",
+        "url": "https://www.example.com/app2"
+      },
+      {
+        "title": "推荐应用3",
+        "image": "https://root-1321307941.cos.ap-shanghai.myqcloud.com/fh/bghyxzw.png",
+        "url": "https://www.example.com/app3"
+      },
+      {
+        "title": "推荐应用4",
+        "image": "https://root-1321307941.cos.ap-shanghai.myqcloud.com/fh/bghyxzw.png",
+        "url": "https://www.example.com/app4"
+      },
+      {
+        "title": "推荐应用5",
+        "image": "https://picsum.photos/300/300?random=14",
+        "url": "https://www.example.com/app5"
+      },
+      {
+        "title": "推荐应用6",
+        "image": "https://picsum.photos/300/300?random=15",
+        "url": "https://www.example.com/app6"
+      }
+    ]
+  },
+  "software": {
+    "title": "软件",
+    "slogan": "海量资源等你发现",
+    "sources": [
+      {
+        "name": "桌面美化插件",
+        "url": "https://wws.lanzoux.com/b02cjqiwf",
+        "type": "lanzou"
+      },
+      {
+        "name": "网络采集2",
+        "url": "https://www.lanzou.com/example2",
+        "type": "lanzou"
+      },
+      {
+        "name": "网络采集3",
+        "url": "https://www.lanzou.com/example3",
+        "type": "lanzou"
+      }
+    ]
+  },
+  "discover": {
+    "title": "发现",
+    "slogan": "探索更多精彩",
+    "items": [
+      {
+        "title": "2026年最值得期待的10款应用",
+        "image": "https://picsum.photos/200/200?random=20",
+        "time": "2026-01-04",
+        "url": "https://www.example.com/article1"
+      },
+      {
+        "title": "Android开发新趋势解读",
+        "image": "https://picsum.photos/200/200?random=21",
+        "time": "2026-01-03",
+        "url": "https://www.example.com/article2"
+      },
+      {
+        "title": "如何提升手机使用效率",
+        "image": "https://picsum.photos/200/200?random=22",
+        "time": "2026-01-02",
+        "url": "https://www.example.com/article3"
+      },
+      {
+        "title": "新年新气象，软件推荐合集",
+        "image": "https://picsum.photos/200/200?random=23",
+        "time": "2026-01-01",
+        "url": "https://www.example.com/article4"
+      }
+    ]
+  },
+  "more": {
+    "title": "官方",
+    "slogan": "联系我们",
+    "official_website": "https://www.example.com",
+    "qq_chat": "123456789",
+    "qq_group": "987654321",
+    "business_contact": "https://www.example.com/contact"
+  }
+}
