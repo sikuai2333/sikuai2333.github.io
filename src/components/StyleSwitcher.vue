@@ -3,26 +3,20 @@ import { useRouter, useRoute } from 'vue-router'
 const router = useRouter()
 const route = useRoute()
 
-const groups = [
-  { label: '经典', items: [
-    { id: 'minimal', label: '极简' },
-    { id: 'glass', label: '玻璃拟态' },
-    { id: 'brutal', label: '新野蛮' },
-    { id: 'darkglow', label: '暗黑微光' },
-    { id: 'bento', label: 'Bento' },
-    { id: 'gradient', label: '渐变流体' },
-  ]},
-  { label: '个性', items: [
-    { id: 'retro', label: '复古CRT' },
-    { id: 'terminal', label: '终端' },
-    { id: 'editorial', label: '报刊' },
-    { id: 'cyberpunk', label: '赛博朋克' },
-    { id: 'paper', label: '纸张' },
-    { id: 'aurora', label: '极光' },
-  ]},
+const styles = [
+  { id: '1', label: '极简' },
+  { id: '2', label: '玻璃拟态' },
+  { id: '3', label: '新野蛮' },
+  { id: '4', label: '暗黑微光' },
+  { id: '5', label: 'Bento' },
+  { id: '6', label: '渐变流体' },
+  { id: '7', label: '复古CRT' },
+  { id: '8', label: '终端' },
+  { id: '9', label: '报刊' },
+  { id: '10', label: '赛博朋克' },
+  { id: '11', label: '纸张' },
+  { id: '12', label: '极光' },
 ]
-
-const all = groups.flatMap(g => g.items)
 </script>
 
 <template>
@@ -31,9 +25,9 @@ const all = groups.flatMap(g => g.items)
       <span class="label">风格</span>
       <div class="tabs">
         <button
-          v-for="s in all" :key="s.id"
+          v-for="s in styles" :key="s.id"
           class="tab" :class="{ active: route.params.style === s.id }"
-          @click="router.push(`/style/${s.id}`)"
+          @click="router.push(`/${s.id}`)"
         >{{ s.label }}</button>
       </div>
     </div>
