@@ -68,13 +68,13 @@ function exec() {
 </template>
 
 <style scoped>
-.page{background:#0d1117;color:#c9d1d9;min-height:100vh;padding-top:44px;font-family:"Fira Code","SF Mono",monospace;font-size:13px}
+.page{background:#0d1117;color:#c9d1d9;min-height:100vh;padding-top:var(--nav-height);font-family:"Fira Code","SF Mono",monospace;font-size:13px}
 .bar{background:#161b22;padding:8px 16px;border-bottom:1px solid #30363d;display:flex;align-items:center;gap:8px}
 .dot{width:10px;height:10px;border-radius:50%}
 .r{background:#ff5f57}.y{background:#febc2e}.g{background:#28c840}
 .title{color:#8b949e;font-size:12px;margin-left:8px}
 
-.term{height:calc(100vh - 44px - 160px);overflow-y:auto;padding:16px 20px;background:#0d1117}
+.term{height:calc(100vh - var(--nav-height) - 160px);overflow-y:auto;padding:16px 20px;background:#0d1117}
 .info{margin-bottom:12px;color:#484f58;font-size:12px}
 .info p{margin-bottom:2px}
 .out{color:#c9d1d9;margin-bottom:2px}
@@ -90,4 +90,5 @@ function exec() {
 .li{font-size:14px}
 
 footer{text-align:center;padding:16px;font-size:11px;color:#484f58}
+@media(max-width:768px){.term{font-size:12px;padding:12px 16px}.quick-links{padding:10px 16px}.link{font-size:11px;padding:5px 10px}}@media(max-width:480px){.term{font-size:11px}.quick-links{flex-wrap:nowrap;gap:6px}.link{font-size:10px;padding:4px 8px}}
 </style>

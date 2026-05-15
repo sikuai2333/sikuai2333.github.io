@@ -107,21 +107,21 @@ function untilt(e: MouseEvent) {
 .reveal-delay-2{transition-delay:0.2s}
 .reveal-delay-3{transition-delay:0.3s}
 
-.page{background:#fafafa;color:#1d1d1f;min-height:100vh;padding-top:calc(44px+60px);position:relative;overflow:hidden}
+.page{background:#fafafa;color:#1d1d1f;min-height:100vh;padding-top:var(--nav-height);position:relative;overflow:hidden}
 .noise{position:fixed;inset:0;z-index:0;pointer-events:none;opacity:0.03;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");background-repeat:repeat;background-size:256px}
 
-.hero{position:relative;z-index:1;text-align:center;padding:0 20px 60px;max-width:720px;margin:0 auto}
+.hero{position:relative;z-index:1;text-align:center;padding:0 20px 60px;max-width:1080px;margin:0 auto}
 .date{font-size:14px;color:#86868b;letter-spacing:0.08em;margin-bottom:16px}
 .slogan{font-size:clamp(32px,5vw,52px);font-weight:700;letter-spacing:-0.03em;line-height:1.1;margin-bottom:20px}
 .clock{font-family:"SF Mono","Fira Code",monospace;font-size:clamp(36px,6vw,56px);font-weight:300;color:#86868b;line-height:1;margin-bottom:16px}
 .weather{font-size:15px;color:#86868b}
 
-.stats{position:relative;z-index:1;max-width:720px;margin:0 auto;padding:0 20px 48px;display:grid;grid-template-columns:repeat(3,1fr);gap:16px;text-align:center}
+.stats{position:relative;z-index:1;max-width:1080px;margin:0 auto;padding:0 20px 48px;display:grid;grid-template-columns:repeat(3,1fr);gap:16px;text-align:center}
 .stat{padding:24px;background:#fff;border-radius:12px;box-shadow:0 1px 3px rgba(0,0,0,0.04)}
 .num{font-size:clamp(28px,4vw,40px);font-weight:700;color:#0071e3;margin-bottom:4px}
 .lbl{font-size:13px;color:#86868b}
 
-.cards{position:relative;z-index:1;max-width:720px;margin:0 auto;padding:0 20px 48px;display:flex;flex-direction:column;gap:1px}
+.cards{position:relative;z-index:1;max-width:1080px;margin:0 auto;padding:0 20px 48px;display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px}
 .card{display:flex;align-items:center;gap:16px;padding:20px 24px;background:#fff;border-radius:12px;box-shadow:0 1px 3px rgba(0,0,0,0.04);transition:box-shadow 0.25s,transform 0.15s ease-out;text-decoration:none;color:#1d1d1f;transform-style:preserve-3d}
 .card:hover{box-shadow:0 8px 30px rgba(0,0,0,0.08)}
 .icon{font-size:24px;flex-shrink:0}
@@ -129,14 +129,14 @@ function untilt(e: MouseEvent) {
 .card p{font-size:13px;color:#86868b}
 .arrow{margin-left:auto;color:#0071e3;font-size:18px}
 
-.skills{position:relative;z-index:1;max-width:720px;margin:0 auto;padding:0 20px 48px}
+.skills{position:relative;z-index:1;max-width:1080px;margin:0 auto;padding:0 20px 48px}
 .skills h2{font-size:20px;font-weight:700;margin-bottom:20px}
 .skill{margin-bottom:16px}
 .skill-h{display:flex;justify-content:space-between;font-size:14px;margin-bottom:6px}
 .bar{height:6px;background:#e8e8ed;border-radius:3px;overflow:hidden}
 .fill{height:100%;background:linear-gradient(90deg,#0071e3,#5ac8fa);border-radius:3px;transition:width 1s ease}
 
-.contact{position:relative;z-index:1;max-width:720px;margin:0 auto;padding:0 20px 48px}
+.contact{position:relative;z-index:1;max-width:1080px;margin:0 auto;padding:0 20px 48px}
 .contact h2{font-size:20px;font-weight:700;margin-bottom:20px}
 form{display:flex;flex-direction:column;gap:12px}
 input,textarea{padding:12px 16px;border:1px solid #d2d2d7;border-radius:10px;font-size:15px;font-family:inherit;background:#fff;transition:border-color 0.2s}
@@ -147,5 +147,5 @@ button:active{transform:translateY(0)}
 .sent{text-align:center;padding:24px;font-size:18px;color:#34c759;font-weight:600}
 
 footer{position:relative;z-index:1;text-align:center;padding:40px 20px 80px;font-size:13px;color:#86868b}
-@media(max-width:640px){.stats{grid-template-columns:1fr}}
+@media(max-width:768px){.hero .slogan{font-size:clamp(24px,5vw,36px)}.hero .clock{font-size:clamp(28px,6vw,40px)}.stats{grid-template-columns:repeat(3,1fr)}.cards{grid-template-columns:1fr}}@media(max-width:480px){.stats{grid-template-columns:1fr}.hero .slogan{font-size:22px}.hero .clock{font-size:28px}}
 </style>

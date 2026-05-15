@@ -66,41 +66,41 @@ const subscribed = ref(false)
 </template>
 
 <style scoped>
-.page{background:#faf8f5;color:#1a1a1a;min-height:100vh;padding-top:calc(44px+60px);font-family:"Georgia","Noto Serif SC","Times New Roman",serif}
-.reading-bar{position:fixed;top:44px;left:0;height:3px;background:#1a1a1a;z-index:99;transition:width 0.1s}
+.page{background:#faf8f5;color:#1a1a1a;min-height:100vh;padding-top:var(--nav-height);font-family:"Georgia","Noto Serif SC","Times New Roman",serif}
+.reading-bar{position:fixed;top:var(--nav-height);left:0;height:3px;background:#1a1a1a;z-index:99;transition:width 0.1s}
 
-.hero{text-align:center;padding:0 20px 48px;max-width:680px;margin:0 auto}
+.hero{text-align:center;padding:0 20px 48px;max-width:1080px;margin:0 auto}
 .dateline{font-size:12px;letter-spacing:0.15em;text-transform:uppercase;color:#999;margin-bottom:20px}
 .slogan{font-size:clamp(32px,5vw,52px);font-weight:400;letter-spacing:-0.02em;line-height:1.15;margin-bottom:20px;font-style:italic}
 .rule{width:40px;height:1px;background:#1a1a1a;margin:0 auto 20px}
 .clock{font-family:"SF Mono",monospace;font-size:clamp(24px,4vw,36px);font-weight:300;color:#888}
 
-.quote{max-width:680px;margin:0 auto;padding:0 20px 48px}
+.quote{max-width:1080px;margin:0 auto;padding:0 20px 48px}
 blockquote{font-size:clamp(18px,2.5vw,24px);font-style:italic;line-height:1.5;color:#444;border-left:3px solid #1a1a1a;padding-left:20px;margin:0}
 blockquote footer{font-size:14px;color:#999;margin-top:8px;font-style:normal}
 
-.articles{max-width:680px;margin:0 auto;padding:0 20px 48px;display:flex;flex-direction:column;gap:32px}
+.articles{max-width:1080px;margin:0 auto;padding:0 20px 48px;display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:32px}
 .article{border-bottom:1px solid #e0dcd4;padding-bottom:24px}
 .tag{font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:#e74c3c;font-family:sans-serif}
 .article h3{font-size:clamp(18px,2vw,22px);font-weight:700;margin:6px 0 8px;letter-spacing:-0.01em}
 .article p{font-size:15px;line-height:1.7;color:#555}
 .meta{font-size:12px;color:#999;margin-top:8px;display:block}
 
-.nav-cards{max-width:680px;margin:0 auto;padding:0 20px 48px;display:grid;grid-template-columns:repeat(2,1fr);gap:32px}
+.nav-cards{max-width:1080px;margin:0 auto;padding:0 20px 48px;display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:32px}
 .card{text-decoration:none;color:#1a1a1a;transition:opacity 0.2s}
 .card:hover{opacity:0.6}
 .num{font-size:36px;display:block;margin-bottom:8px}
 .card h3{font-size:16px;font-weight:700;margin-bottom:4px}
 .card p{font-size:13px;color:#666;line-height:1.5}
 
-.subscribe{max-width:680px;margin:0 auto;padding:0 20px 48px;text-align:center}
+.subscribe{max-width:1080px;margin:0 auto;padding:0 20px 48px;text-align:center}
 .subscribe h2{font-size:20px;margin-bottom:16px}
-form{display:flex;gap:8px;max-width:400px;margin:0 auto}
+form{display:flex;gap:8px;max-width:500px;margin:0 auto}
 input{flex:1;padding:12px 16px;border:1px solid #d2d2d7;border-radius:6px;font-size:15px;font-family:inherit;background:#fff}
 input:focus{outline:none;border-color:#1a1a1a}
 button{padding:12px 24px;background:#1a1a1a;color:#fff;border:none;border-radius:6px;font-size:15px;font-weight:600;cursor:pointer}
 .thanks{font-size:16px;color:#27ae60}
 
 footer{text-align:center;padding:40px 20px 80px;font-size:13px;color:#ccc}
-@media(max-width:640px){.nav-cards{grid-template-columns:1fr}}
+@media(max-width:768px){.hero .slogan{font-size:clamp(24px,5vw,36px)}.articles{grid-template-columns:1fr}.nav-cards{grid-template-columns:repeat(auto-fill,minmax(260px,1fr))}}@media(max-width:480px){.nav-cards{grid-template-columns:1fr}.hero .slogan{font-size:24px}.hero .clock{font-size:24px}form{flex-direction:column}}
 </style>
