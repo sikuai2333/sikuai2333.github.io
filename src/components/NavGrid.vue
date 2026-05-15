@@ -7,28 +7,28 @@ const cards = [
     description: '记录想法与技术笔记',
     icon: '📝',
     href: '#',
-    color: '#0071e3'
+    gradient: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)'
   },
   {
     title: '作品集',
     description: '个人项目与实验作品',
     icon: '🎨',
     href: '#',
-    color: '#bf4800'
+    gradient: 'linear-gradient(135deg, #f093fb 0%, #f5576c 100%)'
   },
   {
     title: '工具站',
     description: '实用在线小工具合集',
     icon: '🛠',
     href: '#',
-    color: '#34c759'
+    gradient: 'linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)'
   },
   {
     title: '更多',
     description: '更多有趣的东西正在路上',
     icon: '✨',
     href: '#',
-    color: '#af52de'
+    gradient: 'linear-gradient(135deg, #43e97b 0%, #38f9d7 100%)'
   }
 ]
 </script>

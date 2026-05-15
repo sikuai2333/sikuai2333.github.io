@@ -65,30 +65,31 @@ const { temp, desc } = useWeather()
 }
 
 .hero-date {
-  font-size: var(--text-caption);
-  color: var(--color-text-tertiary);
-  margin-bottom: 12px;
-  letter-spacing: 0.02em;
+  font-size: 18px;
+  font-weight: 500;
+  color: var(--color-text-secondary);
+  margin-bottom: 16px;
+  letter-spacing: 0.04em;
 }
 
 .hero-slogan {
+  font-family: "SF Pro Display", "Helvetica Neue", Arial, sans-serif;
   font-size: var(--text-hero);
-  font-weight: var(--font-semibold);
+  font-weight: 700;
   line-height: var(--leading-tight);
-  letter-spacing: -0.005em;
+  letter-spacing: -0.025em;
   color: var(--color-text);
   margin-bottom: 16px;
 }
 
 .hero-time {
   font-size: clamp(48px, 8vw, 80px);
-  font-weight: var(--font-light);
   font-variant-numeric: tabular-nums;
   color: var(--color-text);
   letter-spacing: -0.02em;
   line-height: 1;
   margin-bottom: 20px;
-  opacity: 0.9;
+  opacity: 0.85;
   font-weight: 300;
 }
 

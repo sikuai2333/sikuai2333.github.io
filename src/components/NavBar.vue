@@ -30,7 +30,10 @@ onUnmounted(() => window.removeEventListener('scroll', onScroll))
 <template>
   <nav class="nav" :class="{ 'nav--scrolled': scrolled }">
     <div class="nav-inner">
-      <a class="nav-logo" href="#" @click.prevent="scrollTo('#hero')">Portal</a>
+      <a class="nav-logo" href="#" @click.prevent="scrollTo('#hero')">
+        <span class="logo-icon">◆</span>
+        <span class="logo-text">Portal</span>
+      </a>
 
       <button
         class="nav-toggle"
@@ -82,25 +85,39 @@ onUnmounted(() => window.removeEventListener('scroll', onScroll))
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 22px;
+  padding: 0 24px;
 }
 
 .nav-logo {
-  font-size: 17px;
-  font-weight: var(--font-semibold);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 20px;
+  font-weight: 700;
   color: var(--color-text);
-  letter-spacing: -0.01em;
+  letter-spacing: -0.02em;
+  text-decoration: none;
+}
+
+.logo-icon {
+  color: var(--color-accent);
+  font-size: 18px;
+}
+
+.logo-text {
+  font-family: "SF Pro Display", "SF Pro Text", "Helvetica Neue", Arial, sans-serif;
 }
 
 .nav-links {
   display: flex;
-  gap: 28px;
+  gap: 32px;
 }
 
 .nav-link {
-  font-size: 12px;
+  font-size: 14px;
+  font-weight: 500;
   color: var(--color-text);
-  opacity: 0.8;
+  opacity: 0.7;
   transition: opacity var(--duration-fast) var(--ease-default);
   white-space: nowrap;
 }
@@ -114,13 +131,13 @@ onUnmounted(() => window.removeEventListener('scroll', onScroll))
   display: none;
   flex-direction: column;
   gap: 5px;
-  width: 18px;
+  width: 20px;
   padding: 4px 0;
 }
 
 .nav-toggle span {
   display: block;
-  height: 1px;
+  height: 1.5px;
   background: var(--color-text);
   border-radius: 1px;
   transition: transform var(--duration-fast) var(--ease-default),

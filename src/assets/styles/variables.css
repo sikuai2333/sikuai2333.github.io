@@ -14,7 +14,7 @@
   --color-divider:         rgba(0, 0, 0, 0.08);
 
   /* 字体 */
-  --font-family: "SF Pro Text", "SF Pro Icons", "Helvetica Neue",
+  --font-family: "SF Pro Display", "SF Pro Text", "Helvetica Neue",
                  Helvetica, Arial, "PingFang SC", "Microsoft YaHei",
                  sans-serif;
 
@@ -40,7 +40,7 @@
   /* 间距 */
   --section-gap:   12px;
   --tile-padding:  48px 0 56px;
-  --nav-height:    44px;
+  --nav-height:    52px;
   --max-width:     1265px;
 
   /* 圆角 */
