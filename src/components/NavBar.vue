@@ -11,48 +11,25 @@ const links = [
   { label: '工具站', href: '#' },
 ]
 
-function onScroll() {
-  scrolled.value = window.scrollY > 10
-}
-
-function scrollTo(href: string) {
-  mobileOpen.value = false
-  if (href.startsWith('#') && href.length > 1) {
-    const el = document.querySelector(href)
-    if (el) el.scrollIntoView({ behavior: 'smooth' })
-  }
-}
+function onScroll() { scrolled.value = window.scrollY > 10 }
 
 onMounted(() => window.addEventListener('scroll', onScroll, { passive: true }))
 onUnmounted(() => window.removeEventListener('scroll', onScroll))
 </script>
 
 <template>
-  <nav class="nav" :class="{ 'nav--scrolled': scrolled }">
+  <nav class="nav" :class="{ scrolled }">
     <div class="nav-inner">
-      <a class="nav-logo" href="#" @click.prevent="scrollTo('#hero')">
-        <span class="logo-icon">◆</span>
+      <a class="logo" href="#">
+        <span class="logo-mark">◈</span>
         <span class="logo-text">Portal</span>
       </a>
-
-      <button
-        class="nav-toggle"
-        :class="{ active: mobileOpen }"
-        @click="mobileOpen = !mobileOpen"
-        aria-label="菜单"
-      >
-        <span></span><span></span><span></span>
+      <button class="toggle" :class="{ active: mobileOpen }" @click="mobileOpen = !mobileOpen" aria-label="菜单">
+        <i></i><i></i>
       </button>
-
-      <div class="nav-links" :class="{ open: mobileOpen }">
-        <a
-          v-for="link in links"
-          :key="link.label"
-          :href="link.href"
-          class="nav-link"
-          @click.prevent="scrollTo(link.href)"
-        >
-          {{ link.label }}
+      <div class="links" :class="{ open: mobileOpen }">
+        <a v-for="l in links" :key="l.label" :href="l.href" class="link" @click="mobileOpen = false">
+          {{ l.label }}
         </a>
       </div>
     </div>
@@ -61,132 +38,70 @@ onUnmounted(() => window.removeEventListener('scroll', onScroll))
 
 <style scoped>
 .nav {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
+  position: fixed; top: 0; left: 0; right: 0;
   height: var(--nav-height);
   background: var(--color-bg-nav);
-  backdrop-filter: saturate(180%) blur(20px);
-  -webkit-backdrop-filter: saturate(180%) blur(20px);
+  backdrop-filter: saturate(180%) blur(24px);
+  -webkit-backdrop-filter: saturate(180%) blur(24px);
   z-index: 9999;
-  transition: background var(--duration-fast) var(--ease-default);
+  border-bottom: 1px solid transparent;
+  transition: border-color var(--duration-fast) var(--ease-out),
+              background var(--duration-fast) var(--ease-out);
 }
-
-.nav--scrolled {
-  background: rgba(250, 250, 252, 0.92);
-  box-shadow: 0 0 0 0.5px var(--color-divider);
+.nav.scrolled {
+  border-bottom-color: var(--color-divider);
+  background: rgba(10,10,15,0.85);
 }
-
 .nav-inner {
-  max-width: var(--max-width);
-  margin: 0 auto;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0 24px;
+  max-width: var(--max-width); margin: 0 auto;
+  height: 100%; display: flex; align-items: center;
+  justify-content: space-between; padding: 0 28px;
 }
-
-.nav-logo {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  font-size: 20px;
-  font-weight: 700;
-  color: var(--color-text);
+.logo {
+  display: flex; align-items: center; gap: 8px;
+  font-family: var(--font-display);
+  font-size: 18px; font-weight: 600;
   letter-spacing: -0.02em;
-  text-decoration: none;
 }
-
-.logo-icon {
+.logo-mark {
   color: var(--color-accent);
-  font-size: 18px;
+  font-size: 20px;
+  filter: drop-shadow(0 0 6px var(--color-accent-glow));
 }
+.links { display: flex; gap: 28px; }
+.link {
+  font-size: 14px; font-weight: 500;
+  color: var(--color-text-dim);
+  transition: color var(--duration-fast) var(--ease-out);
+  position: relative;
+}
+.link::after {
+  content: ''; position: absolute; bottom: -4px; left: 0; right: 0;
+  height: 1.5px; background: var(--color-accent);
+  transform: scaleX(0); transition: transform var(--duration-fast) var(--ease-out);
+}
+.link:hover { color: var(--color-text); }
+.link:hover::after { transform: scaleX(1); }
 
-.logo-text {
-  font-family: "SF Pro Display", "SF Pro Text", "Helvetica Neue", Arial, sans-serif;
+.toggle { display: none; flex-direction: column; gap: 5px; width: 22px; }
+.toggle i {
+  display: block; height: 1.5px; background: var(--color-text);
+  border-radius: 1px; transition: transform var(--duration-fast) var(--ease-out);
 }
-
-.nav-links {
-  display: flex;
-  gap: 32px;
-}
-
-.nav-link {
-  font-size: 14px;
-  font-weight: 500;
-  color: var(--color-text);
-  opacity: 0.7;
-  transition: opacity var(--duration-fast) var(--ease-default);
-  white-space: nowrap;
-}
-
-.nav-link:hover {
-  opacity: 1;
-}
-
-/* 汉堡菜单 */
-.nav-toggle {
-  display: none;
-  flex-direction: column;
-  gap: 5px;
-  width: 20px;
-  padding: 4px 0;
-}
-
-.nav-toggle span {
-  display: block;
-  height: 1.5px;
-  background: var(--color-text);
-  border-radius: 1px;
-  transition: transform var(--duration-fast) var(--ease-default),
-              opacity var(--duration-fast) var(--ease-default);
-}
-
-.nav-toggle.active span:nth-child(1) {
-  transform: rotate(45deg) translate(4px, 4px);
-}
-.nav-toggle.active span:nth-child(2) {
-  opacity: 0;
-}
-.nav-toggle.active span:nth-child(3) {
-  transform: rotate(-45deg) translate(4px, -4px);
-}
+.toggle.active i:first-child { transform: rotate(45deg) translate(2px, 4px); }
+.toggle.active i:last-child  { transform: rotate(-45deg) translate(2px, -4px); }
 
 @media (max-width: 768px) {
-  .nav-toggle {
-    display: flex;
+  .toggle { display: flex; }
+  .links {
+    position: fixed; top: var(--nav-height); left: 0; right: 0;
+    background: rgba(10,10,15,0.95);
+    backdrop-filter: blur(24px);
+    flex-direction: column; align-items: center; gap: 0; padding: 24px 0;
+    transform: translateY(-100%); opacity: 0; pointer-events: none;
+    transition: transform var(--duration-fast) var(--ease-out), opacity var(--duration-fast) var(--ease-out);
   }
-
-  .nav-links {
-    position: fixed;
-    top: var(--nav-height);
-    left: 0;
-    right: 0;
-    background: rgba(250, 250, 252, 0.97);
-    backdrop-filter: saturate(180%) blur(20px);
-    -webkit-backdrop-filter: saturate(180%) blur(20px);
-    flex-direction: column;
-    align-items: center;
-    gap: 0;
-    padding: 20px 0;
-    transform: translateY(-100%);
-    opacity: 0;
-    pointer-events: none;
-    transition: transform var(--duration-fast) var(--ease-default),
-                opacity var(--duration-fast) var(--ease-default);
-  }
-
-  .nav-links.open {
-    transform: translateY(0);
-    opacity: 1;
-    pointer-events: auto;
-  }
-
-  .nav-link {
-    font-size: 17px;
-    padding: 12px 0;
-  }
+  .links.open { transform: translateY(0); opacity: 1; pointer-events: auto; }
+  .link { font-size: 16px; padding: 14px 0; }
 }
 </style>

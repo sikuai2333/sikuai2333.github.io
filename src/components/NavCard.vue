@@ -9,85 +9,57 @@ defineProps<{
 </script>
 
 <template>
-  <a :href="href || '#'" class="nav-card scroll-reveal" :style="gradient ? { background: gradient } : {}">
-    <div class="nav-card-icon">{{ icon }}</div>
-    <h3 class="nav-card-title">{{ title }}</h3>
-    <p class="nav-card-desc">{{ description }}</p>
-    <span class="nav-card-cta">
-      了解更多 <span class="cta-arrow">›</span>
-    </span>
+  <a :href="href || '#'" class="card scroll-reveal" :style="gradient ? { background: gradient } : {}">
+    <div class="card-inner">
+      <span class="icon">{{ icon }}</span>
+      <h3 class="title">{{ title }}</h3>
+      <p class="desc">{{ description }}</p>
+      <span class="cta">进入 →</span>
+    </div>
   </a>
 </template>
 
 <style scoped>
-.nav-card {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  background: var(--color-bg-card);
+.card {
+  display: flex; align-items: flex-end;
+  min-height: 220px;
   border-radius: var(--radius-card);
-  padding: var(--tile-padding);
-  cursor: pointer;
+  overflow: hidden; cursor: pointer;
   position: relative;
-  overflow: hidden;
-  transition: transform var(--duration-fast) var(--ease-default),
-              box-shadow var(--duration-fast) var(--ease-default);
+  background: var(--color-bg-elevated);
+  border: 1px solid var(--color-divider);
+  transition: transform var(--duration-fast) var(--ease-spring),
+              box-shadow var(--duration-fast) var(--ease-out),
+              border-color var(--duration-fast) var(--ease-out);
 }
-
-.nav-card:hover {
-  transform: scale(1.02);
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+.card:hover {
+  transform: translateY(-4px) scale(1.01);
+  box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+  border-color: rgba(255,255,255,0.1);
 }
-
-.nav-card-icon {
-  font-size: 48px;
-  margin-bottom: 20px;
-  line-height: 1;
-  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
+.card-inner { padding: 28px; }
+.icon {
+  font-size: 36px; display: block; margin-bottom: 16px;
+  filter: drop-shadow(0 2px 8px rgba(0,0,0,0.3));
 }
-
-.nav-card-title {
-  font-size: var(--text-h3);
-  font-weight: 700;
-  color: #fff;
-  margin-bottom: 8px;
-  line-height: var(--leading-tight);
-  text-shadow: 0 1px 3px rgba(0,0,0,0.15);
+.title {
+  font-family: var(--font-display);
+  font-size: var(--text-h3); font-weight: 700;
+  color: var(--color-text); margin-bottom: 6px;
+  letter-spacing: -0.01em;
 }
-
-.nav-card-desc {
+.desc {
   font-size: var(--text-subhead);
-  color: rgba(255,255,255,0.85);
-  max-width: 280px;
+  color: var(--color-text-dim);
   line-height: var(--leading-relaxed);
   margin-bottom: 20px;
 }
-
-.nav-card-cta {
-  display: inline-flex;
-  align-items: center;
+.cta {
+  display: inline-flex; align-items: center;
+  font-size: 13px; font-weight: 500;
+  color: var(--color-accent);
+  transition: gap var(--duration-fast) var(--ease-out);
   gap: 4px;
-  font-size: 15px;
-  font-weight: 500;
-  color: #fff;
-  background: rgba(255,255,255,0.2);
-  backdrop-filter: blur(10px);
-  border-radius: 980px;
-  padding: 8px 20px;
-  transition: background var(--duration-fast) var(--ease-default);
 }
-
-.nav-card:hover .nav-card-cta {
-  background: rgba(255,255,255,0.35);
-}
-
-.cta-arrow {
-  font-size: 18px;
-  transition: transform var(--duration-fast) var(--ease-default);
-}
-
-.nav-card:hover .cta-arrow {
-  transform: translateX(3px);
-}
+.card:hover .cta { gap: 8px; }
 </style>
