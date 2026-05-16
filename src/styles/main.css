@@ -1,0 +1,103 @@
+/* === 9962333 Global Styles === */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800;900&display=swap');
+
+:root {
+  --bg: #f5f0e8;
+  --fg: #1a1a1a;
+  --accent: #ff6b35;
+  --accent-hover: #e55a2b;
+  --border: #1a1a1a;
+  --shadow: 6px 6px 0 #1a1a1a;
+  --shadow-sm: 4px 4px 0 #1a1a1a;
+  --shadow-lg: 8px 8px 0 #1a1a1a;
+  --radius: 0px;
+  --border-w: 3px;
+  --success: #2d8a4e;
+  --danger: #d63031;
+  --warning: #f39c12;
+  --info: #2980b9;
+  --muted: #666;
+  --card-bg: #fff;
+  --nav-h: 64px;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  background: var(--bg);
+  color: var(--fg);
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+}
+
+body { min-height: 100vh; }
+a { color: inherit; text-decoration: none; }
+button { font-family: inherit; cursor: pointer; border: none; background: none; }
+img { max-width: 100%; display: block; }
+input, textarea, select { font-family: inherit; }
+
+/* === Brutal Card === */
+.brutal-card {
+  background: var(--card-bg);
+  border: var(--border-w) solid var(--border);
+  box-shadow: var(--shadow);
+  transition: all 0.15s;
+}
+.brutal-card:hover {
+  transform: translate(3px, 3px);
+  box-shadow: 3px 3px 0 var(--border);
+}
+
+/* === Brutal Button === */
+.brutal-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 24px;
+  border: var(--border-w) solid var(--border);
+  background: var(--accent);
+  color: #fff;
+  font-size: 14px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  box-shadow: var(--shadow-sm);
+  transition: all 0.15s;
+  cursor: pointer;
+}
+.brutal-btn:hover {
+  transform: translate(2px, 2px);
+  box-shadow: 2px 2px 0 var(--border);
+}
+.brutal-btn:active {
+  transform: translate(4px, 4px);
+  box-shadow: none;
+}
+.brutal-btn.outline {
+  background: transparent;
+  color: var(--fg);
+}
+
+/* === Section === */
+.section-title {
+  font-size: clamp(20px, 3vw, 28px);
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 8px;
+}
+.section-desc {
+  font-size: 14px;
+  color: var(--muted);
+  margin-bottom: 24px;
+}
+
+/* === Transitions === */
+.fade-enter-active, .fade-leave-active { transition: opacity 0.2s; }
+.fade-enter-from, .fade-leave-to { opacity: 0; }
+
+@media (max-width: 768px) {
+  :root { --nav-h: 56px; }
+}
