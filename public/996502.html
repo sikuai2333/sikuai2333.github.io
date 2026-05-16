@@ -1,0 +1,699 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>996 → 502</title>
+  <script>p5.disableFriendlyErrors = true;</script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.11.3/p5.min.js"></script>
+  <style>
+    html, body { margin: 0; padding: 0; overflow: hidden; background: #0a0a12; }
+    canvas { display: block; }
+  </style>
+</head>
+<body>
+<script>
+// === 996 → 502 ===
+// 背面视角：火柴人程序员坐在桌前，显示器上代码流淌，
+// 24小时压缩为一个循环，最终弹出 502 Bad Gateway。
+// 简笔画 2.5D 风格，无缝循环。
+
+// === 配置 ===
+const LOOP_FRAMES = 1800;  // 30秒 @ 60fps = 一个完整24h循环
+const TYPING_SPEED = 3;    // 每N帧出一个字符
+
+// === 色板 ===
+const PAL = {
+  // 日夜渐变色（天空）
+  skyDawn:    [255, 200, 150],  // 晨曦
+  skyDay:     [135, 200, 255],  // 白天
+  skyDusk:    [255, 140, 100],  // 黄昏
+  skyNight:   [15, 15, 40],    // 深夜
+  // 场景
+  wall:       [40, 42, 54],    // 墙壁
+  desk:       [60, 50, 45],    // 桌面
+  deskTop:    [80, 70, 62],    // 桌面顶
+  monitor:    [30, 30, 35],    // 显示器边框
+  screen:     [20, 25, 30],    // 屏幕底色
+  codeGreen:  [80, 255, 120],  // 代码颜色
+  errorRed:   [255, 80, 80],   // 502 错误红
+  lamp:       [255, 240, 200], // 台灯暖光
+  lampBody:   [60, 60, 65],   // 台灯支架
+  coffee:     [120, 80, 50],   // 咖啡
+  steam:      [200, 200, 210, 80], // 蒸汽
+  // 火柴人
+  skin:       [220, 190, 165], // 后脑勺/脖子
+  hair:       [50, 40, 35],    // 头发
+  shirt:      [60, 80, 120],   // 衬衫（背面看）
+  shirtDark:  [45, 60, 90],    // 衬衫暗面
+  arm:        [220, 190, 165], // 手臂
+};
+
+// === 全局状态 ===
+let codeLines = [];
+let cursorBlink = 0;
+let errorPopup = { active: false, alpha: 0, y: 0 };
+let shakeX = 0, shakeY = 0;
+let coffeeSteam = [];
+let screenGlitch = 0;
+
+// === 预加载 ===
+function preload() {}
+
+// === 设置 ===
+function setup() {
+  createCanvas(windowWidth, windowHeight);
+  pixelDensity(1);
+  frameRate(60);
+
+  // 初始化代码行（模拟代码流）
+  for (let i = 0; i < 20; i++) {
+    codeLines.push(generateCodeLine());
+  }
+}
+
+// === 主绘制循环 ===
+function draw() {
+  let t = frameCount % LOOP_FRAMES;       // 当前循环帧
+  let progress = t / LOOP_FRAMES;          // 0→1，代表24小时
+  let hourOfDay = progress * 24;           // 0~24 小时
+
+  // --- 画面抖动（502弹出时）---
+  if (errorPopup.active && errorPopup.alpha > 150) {
+    shakeX = random(-3, 3);
+    shakeY = random(-2, 2);
+  } else {
+    shakeX *= 0.9;
+    shakeY *= 0.9;
+  }
+
+  push();
+  translate(shakeX, shakeY);
+
+  // --- 绘制背景 ---
+  drawBackground(hourOfDay);
+
+  // --- 绘制窗户（透出天空）---
+  drawWindow(hourOfDay);
+
+  // --- 绘制墙壁 ---
+  drawWall();
+
+  // --- 绘制台灯 ---
+  drawLamp(hourOfDay);
+
+  // --- 绘制桌子 ---
+  drawDesk();
+
+  // --- 绘制显示器 ---
+  drawMonitor(progress);
+
+  // --- 绘制咖啡杯 ---
+  drawCoffeeCup();
+
+  // --- 绘制火柴人（背面）---
+  drawStickFigure(progress);
+
+  // --- 绘制时钟 ---
+  drawClock(hourOfDay);
+
+  // --- 502 弹窗 ---
+  updateErrorPopup(progress);
+  drawErrorPopup();
+
+  // --- 屏幕闪烁效果 ---
+  if (screenGlitch > 0) {
+    fill(255, 255, 255, screenGlitch);
+    noStroke();
+    rect(width * 0.25, height * 0.15, width * 0.5, height * 0.45);
+    screenGlitch -= 15;
+  }
+
+  pop();
+}
+
+// === 背景 ===
+function drawBackground(hour) {
+  let bg;
+  if (hour < 5) {
+    bg = lerpColorArr(PAL.skyNight, PAL.skyNight, hour / 5);
+  } else if (hour < 7) {
+    bg = lerpColorArr(PAL.skyNight, PAL.skyDawn, (hour - 5) / 2);
+  } else if (hour < 9) {
+    bg = lerpColorArr(PAL.skyDawn, PAL.skyDay, (hour - 7) / 2);
+  } else if (hour < 17) {
+    bg = lerpColorArr(PAL.skyDay, PAL.skyDay, (hour - 9) / 8);
+  } else if (hour < 19) {
+    bg = lerpColorArr(PAL.skyDay, PAL.skyDusk, (hour - 17) / 2);
+  } else if (hour < 21) {
+    bg = lerpColorArr(PAL.skyDusk, PAL.skyNight, (hour - 19) / 2);
+  } else {
+    bg = lerpColorArr(PAL.skyNight, PAL.skyNight, (hour - 21) / 3);
+  }
+  background(bg[0], bg[1], bg[2]);
+}
+
+// === 窗户 ===
+function drawWindow(hour) {
+  let wx = width * 0.75;
+  let wy = height * 0.12;
+  let ww = width * 0.15;
+  let wh = height * 0.3;
+
+  // 窗框
+  stroke(80, 75, 70);
+  strokeWeight(4);
+  fill(0, 0, 0, 0);
+  rect(wx, wy, ww, wh, 3);
+
+  // 窗户透出的天空色
+  let sky;
+  if (hour < 6) sky = [15, 15, 50];
+  else if (hour < 8) sky = lerpColorArr([15, 15, 50], [255, 200, 150], (hour - 6) / 2);
+  else if (hour < 17) sky = [135, 200, 255];
+  else if (hour < 19) sky = lerpColorArr([135, 200, 255], [255, 140, 100], (hour - 17) / 2);
+  else sky = lerpColorArr([255, 140, 100], [15, 15, 50], min((hour - 19) / 2, 1));
+
+  noStroke();
+  fill(sky[0], sky[1], sky[2]);
+  rect(wx + 3, wy + 3, ww - 6, wh - 6, 2);
+
+  // 星星（夜间）
+  if (hour < 6 || hour > 20) {
+    fill(255, 255, 220);
+    noStroke();
+    let starSeed = 42;
+    for (let i = 0; i < 5; i++) {
+      let sx = wx + 10 + ((starSeed * (i + 1) * 7) % (ww - 20));
+      let sy = wy + 10 + ((starSeed * (i + 1) * 13) % (wh - 20));
+      let twinkle = sin(frameCount * 0.05 + i * 2) * 0.5 + 0.5;
+      fill(255, 255, 220, twinkle * 200);
+      ellipse(sx, sy, 2 + twinkle);
+    }
+  }
+
+  // 月亮（夜间）
+  if (hour < 6 || hour > 21) {
+    fill(240, 235, 210);
+    noStroke();
+    ellipse(wx + ww * 0.7, wy + wh * 0.25, 18, 18);
+    fill(sky[0], sky[1], sky[2]);
+    ellipse(wx + ww * 0.7 + 5, wy + wh * 0.25 - 3, 15, 15);
+  }
+
+  // 窗框十字
+  stroke(80, 75, 70);
+  strokeWeight(3);
+  line(wx + ww / 2, wy, wx + ww / 2, wy + wh);
+  line(wx, wy + wh / 2, wx + ww, wy + wh / 2);
+}
+
+// === 墙壁 ===
+function drawWall() {
+  noStroke();
+  fill(PAL.wall[0], PAL.wall[1], PAL.wall[2]);
+  rect(0, height * 0.1, width, height * 0.55);
+
+  // 踢脚线
+  fill(35, 35, 45);
+  rect(0, height * 0.64, width, height * 0.02);
+}
+
+// === 台灯 ===
+function drawLamp(hour) {
+  let lx = width * 0.22;
+  let ly = height * 0.42;
+
+  // 灯光晕（夜间更亮）
+  let glowAlpha = (hour < 7 || hour > 18) ? 40 : 15;
+  noStroke();
+  for (let r = 200; r > 0; r -= 20) {
+    fill(255, 240, 200, glowAlpha * (r / 200));
+    ellipse(lx, ly - 30, r, r * 0.6);
+  }
+
+  // 灯座
+  fill(PAL.lampBody[0], PAL.lampBody[1], PAL.lampBody[2]);
+  noStroke();
+  rect(lx - 15, ly + 50, 30, 6, 3);
+
+  // 灯杆
+  stroke(PAL.lampBody[0], PAL.lampBody[1], PAL.lampBody[2]);
+  strokeWeight(4);
+  line(lx, ly + 50, lx, ly);
+
+  // 灯臂（弯曲）
+  noFill();
+  strokeWeight(3);
+  bezier(lx, ly, lx + 10, ly - 40, lx - 20, ly - 60, lx - 10, ly - 70);
+
+  // 灯罩
+  fill(80, 80, 85);
+  noStroke();
+  beginShape();
+  vertex(lx - 25, ly - 68);
+  vertex(lx + 5, ly - 68);
+  vertex(lx + 15, ly - 80);
+  vertex(lx - 35, ly - 80);
+  endShape(CLOSE);
+
+  // 灯泡光
+  fill(255, 245, 210, 200);
+  ellipse(lx - 10, ly - 70, 8, 6);
+}
+
+// === 桌子 ===
+function drawDesk() {
+  let dy = height * 0.65;
+
+  // 桌面厚度（2.5D 透视感）
+  noStroke();
+  fill(PAL.desk[0], PAL.desk[1], PAL.desk[2]);
+  rect(width * 0.12, dy, width * 0.76, height * 0.05, 2);
+
+  // 桌面顶面
+  fill(PAL.deskTop[0], PAL.deskTop[1], PAL.deskTop[2]);
+  rect(width * 0.1, dy - 6, width * 0.8, 8, 3);
+
+  // 桌腿（侧面可见，2.5D）
+  fill(PAL.desk[0] - 10, PAL.desk[1] - 10, PAL.desk[2] - 10);
+  rect(width * 0.13, dy + height * 0.04, 12, height * 0.2, 2);
+  rect(width * 0.85, dy + height * 0.04, 12, height * 0.2, 2);
+
+  // 地面
+  fill(25, 25, 30);
+  rect(0, height * 0.85, width, height * 0.15);
+}
+
+// === 显示器 ===
+function drawMonitor(progress) {
+  let mx = width * 0.38;
+  let my = height * 0.2;
+  let mw = width * 0.35;
+  let mh = height * 0.42;
+
+  // 显示器支架
+  fill(50, 50, 55);
+  noStroke();
+  rect(mx + mw / 2 - 8, my + mh, 16, height * 0.06, 2);
+  rect(mx + mw / 2 - 25, my + mh + height * 0.05, 50, 6, 3);
+
+  // 显示器边框（2.5D 厚度）
+  fill(PAL.monitor[0], PAL.monitor[1], PAL.monitor[2]);
+  stroke(50, 50, 55);
+  strokeWeight(2);
+  rect(mx, my, mw, mh, 5);
+
+  // 屏幕
+  fill(PAL.screen[0], PAL.screen[1], PAL.screen[2]);
+  noStroke();
+  rect(mx + 8, my + 8, mw - 16, mh - 16, 2);
+
+  // 代码流动
+  let is996Phase = progress < 0.8; // 前80%是正常编码阶段
+
+  push();
+  // 裁剪到屏幕区域
+  // (p5.js 没有简单裁剪，用手动限制)
+  let codeX = mx + 18;
+  let codeY = my + 20;
+  let codeW = mw - 36;
+  let codeH = mh - 40;
+
+  if (is996Phase) {
+    // 正常编码阶段 — 代码流
+    let scrollOffset = (frameCount * 0.5) % (codeLines.length * 18);
+    for (let i = 0; i < codeLines.length; i++) {
+      let ly = codeY + i * 18 - scrollOffset;
+      if (ly < codeY - 18 || ly > codeY + codeH) continue;
+
+      let line = codeLines[i];
+      for (let j = 0; j < line.length; j++) {
+        let charX = codeX + j * 9;
+        if (charX > codeX + codeW) break;
+
+        let c = line[j];
+        if (c === '{' || c === '}' || c === '(' || c === ')' || c === ';') {
+          fill(200, 200, 220, 180);
+        } else if (c === '/' || c === '*') {
+          fill(100, 140, 100, 150);
+        } else if (c >= '0' && c <= '9') {
+          fill(200, 160, 80, 180);
+        } else if (c === '"' || c === "'") {
+          fill(255, 140, 140, 180);
+        } else {
+          fill(PAL.codeGreen[0], PAL.codeGreen[1], PAL.codeGreen[2], 160);
+        }
+        textFont('monospace');
+        textSize(12);
+        textAlign(LEFT, TOP);
+        text(c, charX, ly);
+      }
+    }
+
+    // 光标闪烁
+    cursorBlink++;
+    if (cursorBlink % 60 < 30) {
+      fill(255, 255, 255, 200);
+      let cx = codeX + (sin(frameCount * 0.1) * 50 + 100);
+      let cy = codeY + codeH - 30;
+      rect(cx, cy, 8, 14);
+    }
+  } else {
+    // 502 阶段 — 屏幕变红 + 错误文字
+    let errorT = (progress - 0.8) / 0.2; // 0→1 错误阶段进度
+
+    // 屏幕渐变红
+    fill(60, 10, 10, errorT * 200);
+    rect(mx + 8, my + 8, mw - 16, mh - 16, 2);
+
+    // 502 大字
+    textAlign(CENTER, CENTER);
+    textSize(min(mw * 0.2, 60));
+    fill(255, 80, 80, errorT * 255);
+    text('502', mx + mw / 2, my + mh / 2 - 20);
+
+    textSize(min(mw * 0.06, 16));
+    fill(255, 120, 120, errorT * 200);
+    text('Bad Gateway', mx + mw / 2, my + mh / 2 + 25);
+
+    // 屏幕闪烁
+    if (errorT > 0.3 && frameCount % 20 < 3) {
+      screenGlitch = 80;
+    }
+  }
+
+  // 屏幕边缘光晕
+  noFill();
+  stroke(80, 255, 120, 15);
+  strokeWeight(2);
+  rect(mx + 6, my + 6, mw - 12, mh - 12, 3);
+  pop();
+
+  // 电源指示灯
+  let ledColor = is996Phase ? [0, 255, 80] : [255, 0, 0];
+  fill(ledColor[0], ledColor[1], ledColor[2]);
+  noStroke();
+  ellipse(mx + mw / 2, my + mh + 10, 5, 5);
+  // LED 光晕
+  fill(ledColor[0], ledColor[1], ledColor[2], 30);
+  ellipse(mx + mw / 2, my + mh + 10, 15, 15);
+}
+
+// === 咖啡杯 ===
+function drawCoffeeCup() {
+  let cx = width * 0.72;
+  let cy = height * 0.6;
+
+  // 杯身
+  fill(PAL.coffee[0] + 40, PAL.coffee[1] + 30, PAL.coffee[2] + 20);
+  noStroke();
+  rect(cx - 12, cy - 10, 24, 22, 0, 0, 4, 4);
+
+  // 咖啡液面
+  fill(PAL.coffee[0], PAL.coffee[1], PAL.coffee[2]);
+  ellipse(cx, cy - 10, 24, 8);
+
+  // 杯把手
+  noFill();
+  stroke(PAL.coffee[0] + 40, PAL.coffee[1] + 30, PAL.coffee[2] + 20);
+  strokeWeight(3);
+  arc(cx + 16, cy, 12, 16, -HALF_PI, HALF_PI);
+
+  // 蒸汽
+  noFill();
+  strokeWeight(1.5);
+  for (let i = 0; i < 3; i++) {
+    let st = (frameCount * 0.02 + i * 1.5) % 3;
+    let sy = cy - 15 - st * 20;
+    let alpha = (1 - st / 3) * 60;
+    stroke(200, 200, 210, alpha);
+    let sx = cx - 5 + i * 5 + sin(frameCount * 0.03 + i) * 3;
+    bezier(sx, sy, sx - 3, sy - 8, sx + 3, sy - 16, sx, sy - 24);
+  }
+}
+
+// === 火柴人（背面视角）===
+function drawStickFigure(progress) {
+  let bx = width * 0.5;       // 身体中心 X
+  let by = height * 0.52;     // 身体中心 Y（肩部位置）
+
+  // 呼吸动画
+  let breathe = sin(frameCount * 0.03) * 2;
+
+  // 打字时的微小摆动
+  let typeWobble = sin(frameCount * 0.15) * 1.5;
+
+  // 502 阶段 — 瘫倒动画
+  let slump = 0;
+  if (progress > 0.8) {
+    let slumpT = (progress - 0.8) / 0.2;
+    slump = easeInQuad(slumpT) * 25;
+  }
+
+  push();
+  translate(bx, by + slump);
+
+  // === 头部（后脑勺）===
+  // 头发（背面看到的后脑勺头发）
+  fill(PAL.hair[0], PAL.hair[1], PAL.hair[2]);
+  noStroke();
+  ellipse(0, -65 + breathe, 44, 48);
+
+  // 后脑勺皮肤（头发下方露出的脖子）
+  fill(PAL.skin[0], PAL.skin[1], PAL.skin[2]);
+  ellipse(0, -42 + breathe, 18, 12);
+
+  // 脖子
+  fill(PAL.skin[0], PAL.skin[1], PAL.skin[2]);
+  rect(-6, -38 + breathe, 12, 15);
+
+  // === 躯干（衬衫背面）===
+  fill(PAL.shirt[0], PAL.shirt[1], PAL.shirt[2]);
+  noStroke();
+  // 主体
+  beginShape();
+  vertex(-22, -25 + breathe);
+  vertex(22, -25 + breathe);
+  vertex(24, 35 + breathe);
+  vertex(-24, 35 + breathe);
+  endShape(CLOSE);
+
+  // 衬衫中缝线（背面细节）
+  stroke(PAL.shirtDark[0], PAL.shirtDark[1], PAL.shirtDark[2]);
+  strokeWeight(1.5);
+  line(0, -22 + breathe, 0, 33 + breathe);
+
+  // 领口
+  noFill();
+  stroke(PAL.skin[0], PAL.skin[1], PAL.skin[2]);
+  strokeWeight(2);
+  arc(0, -25 + breathe, 20, 12, 0, PI);
+
+  // === 手臂 ===
+  // 打字时手臂微微上下动
+  let armWave = sin(frameCount * 0.2) * 5;
+  let armWave2 = sin(frameCount * 0.2 + PI) * 5;
+
+  // 左臂
+  stroke(PAL.shirt[0], PAL.shirt[1], PAL.shirt[2]);
+  strokeWeight(10);
+  noFill();
+  // 上臂
+  let shoulderL = [-22, -20 + breathe];
+  let elbowL = [-35, 10 + breathe + armWave];
+  let handL = [-20, 35 + breathe + armWave * 0.5];
+  line(shoulderL[0], shoulderL[1], elbowL[0], elbowL[1]);
+  // 前臂
+  stroke(PAL.arm[0], PAL.arm[1], PAL.arm[2]);
+  strokeWeight(8);
+  line(elbowL[0], elbowL[1], handL[0], handL[1]);
+
+  // 右臂
+  stroke(PAL.shirt[0], PAL.shirt[1], PAL.shirt[2]);
+  strokeWeight(10);
+  let shoulderR = [22, -20 + breathe];
+  let elbowR = [35, 10 + breathe + armWave2];
+  let handR = [20, 35 + breathe + armWave2 * 0.5];
+  line(shoulderR[0], shoulderR[1], elbowR[0], elbowR[1]);
+  stroke(PAL.arm[0], PAL.arm[1], PAL.arm[2]);
+  strokeWeight(8);
+  line(elbowR[0], elbowR[1], handR[0], handR[1]);
+
+  // 手（小圆）
+  fill(PAL.arm[0], PAL.arm[1], PAL.arm[2]);
+  noStroke();
+  ellipse(handL[0], handL[1], 10, 10);
+  ellipse(handR[0], handR[1], 10, 10);
+
+  // === 耳朵（背面视角，两侧露出）===
+  fill(PAL.skin[0], PAL.skin[1], PAL.skin[2]);
+  noStroke();
+  ellipse(-22, -55 + breathe, 8, 12);
+  ellipse(22, -55 + breathe, 8, 12);
+
+  pop();
+}
+
+// === 时钟（顶部数字时钟）===
+function drawClock(hour) {
+  let hh = floor(hour);
+  let mm = floor((hour - hh) * 60);
+  let ss = floor(((hour - hh) * 60 - mm) * 60);
+
+  let timeStr = nf(hh, 2) + ':' + nf(mm, 2) + ':' + nf(ss, 2);
+
+  // 背景条
+  fill(0, 0, 0, 120);
+  noStroke();
+  rectMode(CENTER);
+  rect(width / 2, 30, 200, 36, 8);
+  rectMode(CORNER);
+
+  // 时间文字
+  textAlign(CENTER, CENTER);
+  textFont('monospace');
+  textSize(18);
+
+  // 根据时间段变色
+  let timeColor;
+  if (hh >= 9 && hh < 21) {
+    timeColor = [255, 255, 255, 200]; // 白天
+  } else {
+    timeColor = [255, 180, 100, 200]; // 夜间暖色
+  }
+
+  fill(timeColor[0], timeColor[1], timeColor[2], timeColor[3]);
+  text(timeStr, width / 2, 30);
+
+  // 996 → 502 标题
+  textSize(11);
+  fill(255, 255, 255, 80);
+  text('996 → 502', width / 2, 55);
+}
+
+// === 502 弹窗逻辑 ===
+function updateErrorPopup(progress) {
+  // 在 80% 进度时触发 502 弹窗
+  if (progress > 0.78 && !errorPopup.active) {
+    errorPopup.active = true;
+    errorPopup.alpha = 0;
+    errorPopup.y = height * 0.3;
+    screenGlitch = 150;
+  }
+
+  if (errorPopup.active) {
+    if (progress < 0.95) {
+      errorPopup.alpha = min(errorPopup.alpha + 5, 255);
+    } else {
+      errorPopup.alpha = max(errorPopup.alpha - 8, 0);
+    }
+  }
+
+  // 循环重置
+  if (progress < 0.1) {
+    errorPopup.active = false;
+    errorPopup.alpha = 0;
+  }
+}
+
+function drawErrorPopup() {
+  if (!errorPopup.active || errorPopup.alpha < 5) return;
+
+  let px = width / 2;
+  let py = errorPopup.y;
+  let pw = 260;
+  let ph = 120;
+
+  // 弹窗阴影
+  fill(0, 0, 0, errorPopup.alpha * 0.3);
+  noStroke();
+  rect(px - pw / 2 + 4, py - ph / 2 + 4, pw, ph, 8);
+
+  // 弹窗背景
+  fill(45, 45, 50, errorPopup.alpha);
+  stroke(255, 80, 80, errorPopup.alpha * 0.5);
+  strokeWeight(2);
+  rect(px - pw / 2, py - ph / 2, pw, ph, 8);
+
+  // 标题栏
+  fill(60, 20, 20, errorPopup.alpha);
+  noStroke();
+  rect(px - pw / 2, py - ph / 2, pw, 28, 8, 8, 0, 0);
+
+  // 标题
+  textAlign(LEFT, CENTER);
+  textSize(13);
+  fill(255, 100, 100, errorPopup.alpha);
+  text('⚠ 502 Bad Gateway', px - pw / 2 + 12, py - ph / 2 + 14);
+
+  // 关闭按钮
+  textAlign(CENTER, CENTER);
+  fill(255, 80, 80, errorPopup.alpha);
+  text('×', px + pw / 2 - 16, py - ph / 2 + 14);
+
+  // 内容
+  textAlign(CENTER, CENTER);
+  textSize(14);
+  fill(220, 220, 220, errorPopup.alpha);
+  text('The server encountered a temporary', px, py - 5);
+  text('error and could not complete your request.', px, py + 15);
+
+  // OK 按钮
+  fill(80, 80, 90, errorPopup.alpha);
+  noStroke();
+  rect(px - 30, py + ph / 2 - 35, 60, 24, 4);
+  fill(255, 255, 255, errorPopup.alpha);
+  textSize(12);
+  text('OK', px, py + ph / 2 - 23);
+}
+
+// === 工具函数 ===
+function lerpColorArr(c1, c2, t) {
+  t = constrain(t, 0, 1);
+  return [
+    lerp(c1[0], c2[0], t),
+    lerp(c1[1], c2[1], t),
+    lerp(c1[2], c2[2], t)
+  ];
+}
+
+function easeInQuad(t) {
+  return t * t;
+}
+
+// 生成模拟代码行
+function generateCodeLine() {
+  const templates = [
+    'function render() {',
+    '  const data = fetchData();',
+    '  if (data.status === 200) {',
+    '    return data.body;',
+    '  } else {',
+    '    throw new Error("fail");',
+    '  }',
+    '}',
+    'async function init() {',
+    '  let res = await api.get("/v1");',
+    '  console.log(res.data);',
+    '  for (let i = 0; i < n; i++) {',
+    '    process(items[i]);',
+    '  }',
+    '}',
+    '// TODO: fix this later',
+    'export default { render };',
+    'const timeout = 30000;',
+    'while (retry < maxRetries) {',
+    '  try { connect(); break; }',
+    '  catch (e) { retry++; }',
+  ];
+  return templates[floor(random(templates.length))];
+}
+
+// === 窗口大小变化 ===
+function windowResized() {
+  resizeCanvas(windowWidth, windowHeight);
+}
+</script>
+</body>
+</html>
