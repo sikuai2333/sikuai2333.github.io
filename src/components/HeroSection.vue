@@ -3,82 +3,97 @@ import { useTime } from '@/composables/useTime'
 import { useWeather } from '@/composables/useWeather'
 import { useQuotes } from '@/composables/useQuotes'
 import { useCountdown } from '@/composables/useCountdown'
+import { ref, onMounted, onUnmounted } from 'vue'
 
-const { time, date, weekday, isWeekend } = useTime()
+const { time, date, weekday } = useTime()
 const { weather } = useWeather()
 const { current: quote, refresh: nextQuote } = useQuotes()
 const { remaining, isOvertime, percent } = useCountdown(18, 0)
 
-// 996进度条计算
-const segments = 24
-const activeColor = '#ff6b35'
+const showError = ref(false)
+let errorTimer: ReturnType<typeof setInterval>
+onMounted(() => {
+  errorTimer = setInterval(() => {
+    showError.value = true
+    setTimeout(() => { showError.value = false }, 3500)
+  }, 12000)
+  setTimeout(() => {
+    showError.value = true
+    setTimeout(() => { showError.value = false }, 3500)
+  }, 6000)
+})
+onUnmounted(() => clearInterval(errorTimer))
 </script>
 
 <template>
   <section class="hero">
-    <!-- 火柴人动画区 -->
     <div class="hero-art">
-      <svg viewBox="0 0 400 200" class="stickman-svg">
-        <!-- 桌子 -->
-        <rect x="200" y="130" width="140" height="4" rx="2" fill="#1a1a1a"/>
-        <rect x="210" y="134" width="4" height="40" fill="#1a1a1a"/>
-        <rect x="326" y="134" width="4" height="40" fill="#1a1a1a"/>
+      <svg viewBox="0 0 600 340" class="desk-svg" preserveAspectRatio="xMidYMid meet">
+        <!-- === 桌面透视（正面微俯视） === -->
+        <!-- 桌面顶部（近处，画面底部）- 白色桌面，黑色实线，延伸到屏幕外 -->
+        <polygon points="-40,290 640,290 580,220 20,220" fill="#fafafa" stroke="#1a1a1a" stroke-width="3"/>
+        <!-- 桌面厚度 -->
+        <polygon points="-40,290 640,290 640,300 -40,300" fill="#e8e8e8" stroke="#1a1a1a" stroke-width="2"/>
 
-        <!-- 显示器 -->
-        <rect x="230" y="85" width="80" height="50" rx="3" fill="#1a1a1a" stroke="#1a1a1a" stroke-width="2"/>
-        <rect x="234" y="89" width="72" height="42" rx="1" fill="#4a9eff"/>
-        <!-- 屏幕上的代码行 -->
-        <rect x="240" y="96" width="30" height="2" rx="1" fill="rgba(255,255,255,0.8)" class="code-line line1"/>
-        <rect x="240" y="102" width="45" height="2" rx="1" fill="rgba(255,255,255,0.6)" class="code-line line2"/>
-        <rect x="240" y="108" width="20" height="2" rx="1" fill="rgba(255,255,255,0.5)" class="code-line line3"/>
-        <rect x="240" y="114" width="55" height="2" rx="1" fill="rgba(255,255,255,0.7)" class="code-line line4"/>
-        <rect x="240" y="120" width="35" height="2" rx="1" fill="rgba(255,255,255,0.4)" class="code-line line5"/>
-        <!-- 显示器支架 -->
-        <rect x="265" y="135" width="10" height="4" fill="#1a1a1a"/>
+        <!-- === 显示器 === -->
+        <!-- 显示器支架底座 -->
+        <rect x="268" y="215" width="64" height="5" rx="2" fill="#333"/>
+        <!-- 支架立柱 -->
+        <rect x="294" y="195" width="12" height="20" fill="#444"/>
+        <!-- 显示器外框（薄边框） -->
+        <rect x="160" y="60" width="280" height="138" rx="6" fill="#1a1a1a" stroke="#1a1a1a" stroke-width="2"/>
+        <!-- 屏幕内容区 -->
+        <rect x="166" y="66" width="268" height="126" rx="3" :fill="showError ? '#e74c3c' : '#1e1e2e'" class="screen-bg"/>
 
-        <!-- 火柴人 - 侧面坐姿 -->
-        <!-- 头 -->
-        <circle cx="190" cy="75" r="16" fill="none" stroke="#1a1a1a" stroke-width="3"/>
-        <!-- 眼睛 - 困 -->
-        <line x1="183" y1="73" x2="187" y2="73" stroke="#1a1a1a" stroke-width="2" stroke-linecap="round"/>
-        <line x1="193" y1="73" x2="197" y2="73" stroke="#1a1a1a" stroke-width="2" stroke-linecap="round"/>
-        <!-- 身体 -->
-        <line x1="190" y1="91" x2="190" y2="125" stroke="#1a1a1a" stroke-width="3" stroke-linecap="round"/>
-        <!-- 屁股坐在椅子上 -->
-        <line x1="190" y1="125" x2="210" y2="130" stroke="#1a1a1a" stroke-width="3" stroke-linecap="round"/>
-        <!-- 左手撑头 -->
-        <line x1="190" y1="105" x2="175" y2="80" stroke="#1a1a1a" stroke-width="3" stroke-linecap="round"/>
-        <line x1="175" y1="80" x2="182" y2="70" stroke="#1a1a1a" stroke-width="3" stroke-linecap="round"/>
-        <!-- 右手放桌上 -->
-        <line x1="190" y1="105" x2="230" y2="126" stroke="#1a1a1a" stroke-width="3" stroke-linecap="round"/>
-        <!-- 左腿 -->
-        <line x1="190" y1="125" x2="175" y2="160" stroke="#1a1a1a" stroke-width="3" stroke-linecap="round"/>
-        <line x1="175" y1="160" x2="168" y2="170" stroke="#1a1a1a" stroke-width="3" stroke-linecap="round"/>
-        <!-- 右腿 -->
-        <line x1="190" y1="125" x2="210" y2="160" stroke="#1a1a1a" stroke-width="3" stroke-linecap="round"/>
-        <line x1="210" y1="160" x2="205" y2="170" stroke="#1a1a1a" stroke-width="3" stroke-linecap="round"/>
-
-        <!-- 椅子 -->
-        <rect x="160" y="128" width="60" height="3" rx="1" fill="#888"/>
-        <line x1="165" y1="131" x2="160" y2="170" stroke="#888" stroke-width="2"/>
-        <line x1="215" y1="131" x2="220" y2="170" stroke="#888" stroke-width="2"/>
-        <!-- 椅背 -->
-        <line x1="160" y1="100" x2="160" y2="130" stroke="#888" stroke-width="3"/>
-
-        <!-- 咖啡杯 -->
-        <rect x="340" y="115" width="18" height="15" rx="2" fill="#c0392b" stroke="#1a1a1a" stroke-width="1.5"/>
-        <path d="M358 119 Q366 122 358 127" fill="none" stroke="#1a1a1a" stroke-width="1.5"/>
-        <!-- 热气 -->
-        <path d="M345 112 Q347 107 349 112" fill="none" stroke="#aaa" stroke-width="1" class="steam s1"/>
-        <path d="M350 110 Q352 105 354 110" fill="none" stroke="#aaa" stroke-width="1" class="steam s2"/>
-
-        <!-- 502气泡 (偶尔弹出) -->
-        <g class="error-bubble">
-          <rect x="290" y="40" width="80" height="30" rx="4" fill="#ff6b35" stroke="#1a1a1a" stroke-width="2"/>
-          <polygon points="290,70 298,70 290,78" fill="#ff6b35" stroke="#1a1a1a" stroke-width="2"/>
-          <rect x="288" y="68" width="14" height="4" fill="#ff6b35"/>
-          <text x="330" y="60" text-anchor="middle" fill="white" font-size="13" font-weight="800">502 😵</text>
+        <!-- 正常状态：滚动代码 -->
+        <g v-if="!showError" class="code-scroll">
+          <text font-family="'Courier New',monospace" font-size="10" fill="#a6e3a1">
+            <tspan x="176" y="82" class="scroll-line">function init() {</tspan>
+            <tspan x="186" y="94" class="scroll-line">  const data = await fetch('/api');</tspan>
+            <tspan x="186" y="106" class="scroll-line">  if (!data.ok) throw Error();</tspan>
+            <tspan x="186" y="118" class="scroll-line">  return data.json();</tspan>
+            <tspan x="176" y="130" class="scroll-line">}</tspan>
+            <tspan x="176" y="142" class="scroll-line">const result = init();</tspan>
+            <tspan x="176" y="154" class="scroll-line">console.log(result);</tspan>
+            <tspan x="176" y="166" class="scroll-line">render(result);</tspan>
+            <tspan x="176" y="178" class="scroll-line">// processing...</tspan>
+          </text>
+          <!-- 语法高亮色块 -->
+          <text font-family="'Courier New',monospace" font-size="10">
+            <tspan x="176" y="82" fill="#89b4fa">function</tspan>
+            <tspan x="228" y="82" fill="#a6e3a1"> init</tspan>
+            <tspan x="186" y="94" fill="#cdd6f4">  const </tspan>
+            <tspan x="226" y="94" fill="#f9e2af">data</tspan>
+            <tspan x="254" y="94" fill="#cdd6f4"> = </tspan>
+            <tspan x="270" y="94" fill="#89b4fa">await</tspan>
+            <tspan x="300" y="94" fill="#a6e3a1"> fetch</tspan>
+            <tspan x="186" y="106" fill="#cdd6f4">  </tspan>
+            <tspan x="198" y="106" fill="#89b4fa">if</tspan>
+            <tspan x="210" y="106" fill="#cdd6f4"> (!data.ok) </tspan>
+            <tspan x="274" y="106" fill="#89b4fa">throw</tspan>
+          </text>
+          <!-- 光标 -->
+          <rect x="236" y="170" width="7" height="12" fill="#a6e3a1" class="cursor"/>
         </g>
+
+        <!-- 错误状态：红屏 -->
+        <g v-if="showError">
+          <rect x="166" y="66" width="268" height="126" rx="3" fill="#e74c3c" class="red-flash"/>
+          <text x="300" y="118" text-anchor="middle" fill="white" font-size="40" font-weight="900" font-family="'Courier New',monospace">502</text>
+          <text x="300" y="145" text-anchor="middle" fill="rgba(255,255,255,0.8)" font-size="14" font-weight="700" font-family="'Courier New',monospace">BAD GATEWAY</text>
+          <text x="300" y="170" text-anchor="middle" fill="rgba(255,255,255,0.5)" font-size="24">😵</text>
+        </g>
+
+        <!-- === 键盘 === -->
+        <!-- 键盘主体（透视梯形） -->
+        <polygon points="210,240 390,240 380,225 220,225" fill="#e0e0e0" stroke="#1a1a1a" stroke-width="2" rx="3"/>
+        <!-- 键帽行 -->
+        <rect x="228" y="228" width="144" height="4" rx="1" fill="#ccc" stroke="#aaa" stroke-width="0.5"/>
+        <rect x="232" y="234" width="136" height="3" rx="1" fill="#ccc" stroke="#aaa" stroke-width="0.5"/>
+
+        <!-- 桌面反光 -->
+        <line x1="100" y1="270" x2="200" y2="265" stroke="#e0e0e0" stroke-width="1" opacity="0.4"/>
+        <line x1="380" y1="265" x2="500" y2="270" stroke="#e0e0e0" stroke-width="1" opacity="0.4"/>
       </svg>
     </div>
 
@@ -98,15 +113,14 @@ const activeColor = '#ff6b35'
 
       <p class="hero-quote" @click="nextQuote">
         "{{ quote }}"
-        <span class="quote-hint">点击换一条</span>
+        <span class="quote-hint">点击换一条 ↻</span>
       </p>
 
-      <!-- 下班倒计时 -->
       <div class="countdown-box" :class="{ overtime: isOvertime }">
         <div class="countdown-label">{{ isOvertime ? '🎉 已加班' : '⏰ 距离下班' }}</div>
         <div class="countdown-time">{{ remaining }}</div>
         <div class="countdown-bar">
-          <div class="countdown-fill" :style="{ width: percent + '%' }"></div>
+          <div class="countdown-fill" :style="{ width: Math.min(percent, 100) + '%' }"></div>
         </div>
       </div>
     </div>
@@ -115,146 +129,61 @@ const activeColor = '#ff6b35'
 
 <style scoped>
 .hero {
-  padding: 48px 24px 32px;
-  max-width: 1200px;
+  padding: 40px 24px 32px;
+  max-width: 700px;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 24px;
+  gap: 20px;
+}
+.hero-art { width: 100%; max-width: 550px; }
+.desk-svg { width: 100%; height: auto; }
+
+/* 屏幕背景色过渡 */
+.screen-bg { transition: fill 0.4s; }
+
+/* 代码滚动 */
+.code-scroll { animation: scrollUp 4s linear infinite; }
+@keyframes scrollUp {
+  0% { transform: translateY(0); }
+  80% { transform: translateY(-40px); }
+  100% { transform: translateY(-40px); }
 }
 
-/* SVG动画 */
-.hero-art {
-  width: 100%;
-  max-width: 500px;
-}
-.stickman-svg { width: 100%; height: auto; }
+/* 光标闪烁 */
+.cursor { animation: blink 0.7s step-end infinite; }
+@keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
 
-/* 代码行闪烁 */
-.code-line { animation: blink 2s infinite; }
-.line1 { animation-delay: 0s; }
-.line2 { animation-delay: 0.3s; }
-.line3 { animation-delay: 0.6s; }
-.line4 { animation-delay: 0.9s; }
-.line5 { animation-delay: 1.2s; }
-@keyframes blink {
-  0%, 80%, 100% { opacity: 1; }
-  40% { opacity: 0.3; }
-}
-
-/* 热气飘动 */
-.steam { animation: steamFloat 2s infinite; }
-.s2 { animation-delay: 0.8s; }
-@keyframes steamFloat {
-  0% { opacity: 0.6; transform: translateY(0); }
-  50% { opacity: 0.3; transform: translateY(-6px); }
-  100% { opacity: 0; transform: translateY(-12px); }
-}
-
-/* 502气泡 */
-.error-bubble { animation: popIn 6s infinite; }
-@keyframes popIn {
-  0%, 70%, 100% { opacity: 0; transform: translateY(10px); }
-  75%, 95% { opacity: 1; transform: translateY(0); }
+/* 红屏闪现 */
+.red-flash { animation: flashIn 0.3s ease-out; }
+@keyframes flashIn {
+  0% { opacity: 0; }
+  50% { opacity: 0.7; }
+  100% { opacity: 1; }
 }
 
 /* 文字区 */
-.hero-text {
-  text-align: center;
-  width: 100%;
-  max-width: 600px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 16px;
-}
-
-.hero-slogan {
-  font-size: clamp(28px, 5vw, 48px);
-  font-weight: 900;
-  line-height: 1.2;
-}
+.hero-text { text-align: center; width: 100%; max-width: 500px; display: flex; flex-direction: column; align-items: center; gap: 16px; }
+.hero-slogan { font-size: clamp(26px, 5vw, 44px); font-weight: 900; line-height: 1.2; }
 .slogan-main { color: var(--accent); }
 .slogan-divider { color: var(--muted); margin: 0 8px; font-weight: 400; }
 .slogan-sub { color: #6c63ff; }
-
-.hero-info {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 16px;
-  font-size: 14px;
-  color: var(--muted);
-}
-
-.hero-quote {
-  font-size: 15px;
-  color: var(--muted);
-  font-style: italic;
-  cursor: pointer;
-  padding: 12px 20px;
-  background: rgba(0,0,0,0.03);
-  border-left: 3px solid var(--accent);
-  text-align: left;
-  width: 100%;
-  transition: background 0.2s;
-}
+.hero-info { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; font-size: 14px; color: var(--muted); }
+.hero-quote { font-size: 14px; color: var(--muted); font-style: italic; cursor: pointer; padding: 12px 18px; background: rgba(0,0,0,0.03); border-left: 3px solid var(--accent); text-align: left; width: 100%; }
 .hero-quote:hover { background: rgba(0,0,0,0.06); }
-.quote-hint {
-  display: block;
-  font-size: 11px;
-  color: #aaa;
-  font-style: normal;
-  margin-top: 4px;
-}
-
-/* 倒计时 */
-.countdown-box {
-  width: 100%;
-  padding: 16px 20px;
-  background: var(--card-bg);
-  border: var(--border-w) solid var(--border);
-  box-shadow: var(--shadow-sm);
-  text-align: center;
-}
-.countdown-box.overtime {
-  border-color: var(--success);
-  background: #f0fff4;
-}
-.countdown-label {
-  font-size: 13px;
-  font-weight: 700;
-  color: var(--muted);
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  margin-bottom: 4px;
-}
-.countdown-time {
-  font-size: clamp(32px, 6vw, 56px);
-  font-weight: 900;
-  font-variant-numeric: tabular-nums;
-  color: var(--accent);
-  line-height: 1.1;
-}
+.quote-hint { display: block; font-size: 11px; color: #bbb; font-style: normal; margin-top: 4px; }
+.countdown-box { width: 100%; padding: 16px 20px; background: var(--card-bg); border: var(--border-w) solid var(--border); box-shadow: var(--shadow-sm); text-align: center; }
+.countdown-box.overtime { border-color: var(--success); background: #f0fff4; }
+.countdown-label { font-size: 12px; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 4px; }
+.countdown-time { font-size: clamp(30px, 6vw, 52px); font-weight: 900; font-variant-numeric: tabular-nums; color: var(--accent); line-height: 1.1; }
 .overtime .countdown-time { color: var(--success); }
-.countdown-bar {
-  margin-top: 10px;
-  height: 6px;
-  background: #e0e0e0;
-  border-radius: 3px;
-  overflow: hidden;
-}
-.countdown-fill {
-  height: 100%;
-  background: var(--accent);
-  border-radius: 3px;
-  transition: width 1s linear;
-}
+.countdown-bar { margin-top: 10px; height: 5px; background: #e0e0e0; border-radius: 3px; overflow: hidden; }
+.countdown-fill { height: 100%; background: var(--accent); border-radius: 3px; transition: width 1s linear; }
 .overtime .countdown-fill { background: var(--success); }
 
 @media (max-width: 768px) {
-  .hero { padding: 32px 16px 24px; }
-  .hero-info { gap: 8px; font-size: 13px; }
+  .hero { padding: 24px 16px 20px; }
+  .hero-info { gap: 6px; font-size: 12px; }
 }
 </style>
