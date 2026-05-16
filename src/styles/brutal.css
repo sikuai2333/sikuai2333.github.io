@@ -1,0 +1,131 @@
+/* === Neue Brutal Global Styles === */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800;900&display=swap');
+
+:root {
+  --brutal-bg: #f5f0e8;
+  --brutal-fg: #1a1a1a;
+  --brutal-accent: #ff6b35;
+  --brutal-accent-hover: #e55a2b;
+  --brutal-border: #1a1a1a;
+  --brutal-shadow: 6px 6px 0 #1a1a1a;
+  --brutal-shadow-sm: 4px 4px 0 #1a1a1a;
+  --brutal-shadow-lg: 8px 8px 0 #1a1a1a;
+  --brutal-radius: 0px;
+  --brutal-border-w: 3px;
+  --brutal-success: #2d8a4e;
+  --brutal-danger: #d63031;
+  --brutal-warning: #f39c12;
+  --brutal-info: #2980b9;
+  --brutal-muted: #666;
+  --brutal-card-bg: #fff;
+  --nav-h: 64px;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  background: var(--brutal-bg);
+  color: var(--brutal-fg);
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+}
+
+body { min-height: 100vh; }
+
+a { color: inherit; text-decoration: none; }
+button { font-family: inherit; cursor: pointer; border: none; background: none; }
+img { max-width: 100%; display: block; }
+input, textarea, select { font-family: inherit; }
+
+/* === Brutal Utilities === */
+.brutal-card {
+  background: var(--brutal-card-bg);
+  border: var(--brutal-border-w) solid var(--brutal-border);
+  box-shadow: var(--brutal-shadow);
+  transition: all 0.15s;
+}
+.brutal-card:hover {
+  transform: translate(3px, 3px);
+  box-shadow: 3px 3px 0 var(--brutal-border);
+}
+
+.brutal-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 24px;
+  border: var(--brutal-border-w) solid var(--brutal-border);
+  background: var(--brutal-accent);
+  color: #fff;
+  font-size: 14px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  box-shadow: var(--brutal-shadow-sm);
+  transition: all 0.15s;
+  cursor: pointer;
+}
+.brutal-btn:hover {
+  transform: translate(2px, 2px);
+  box-shadow: 2px 2px 0 var(--brutal-border);
+}
+.brutal-btn:active {
+  transform: translate(4px, 4px);
+  box-shadow: none;
+}
+.brutal-btn.outline {
+  background: transparent;
+  color: var(--brutal-fg);
+}
+.brutal-btn.sm {
+  padding: 8px 16px;
+  font-size: 12px;
+  box-shadow: 3px 3px 0 var(--brutal-border);
+}
+.brutal-btn.sm:hover {
+  transform: translate(1px, 1px);
+  box-shadow: 2px 2px 0 var(--brutal-border);
+}
+.brutal-btn.danger { background: var(--brutal-danger); }
+.brutal-btn.success { background: var(--brutal-success); }
+
+.brutal-input {
+  padding: 12px 16px;
+  border: var(--brutal-border-w) solid var(--brutal-border);
+  background: #fff;
+  font-size: 14px;
+  outline: none;
+  transition: box-shadow 0.15s;
+}
+.brutal-input:focus {
+  box-shadow: var(--brutal-shadow-sm);
+}
+
+.brutal-badge {
+  display: inline-block;
+  padding: 4px 10px;
+  border: 2px solid var(--brutal-border);
+  font-size: 11px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.brutal-divider {
+  border: none;
+  border-top: var(--brutal-border-w) solid var(--brutal-border);
+}
+
+/* === Page Transition === */
+.page-enter-active, .page-leave-active {
+  transition: opacity 0.2s, transform 0.2s;
+}
+.page-enter-from { opacity: 0; transform: translateY(8px); }
+.page-leave-to { opacity: 0; transform: translateY(-8px); }
+
+/* === Responsive === */
+@media (max-width: 768px) {
+  :root { --nav-h: 56px; }
+}
