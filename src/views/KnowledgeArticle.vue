@@ -9,6 +9,22 @@ const { getArticle, getRelated } = useMockKnowledge()
 const article = computed(() => getArticle(route.params.id as string))
 const related = computed(() => getRelated(route.params.id as string))
 
+// 简单的 markdown 转 HTML
+function renderContent(md: string): string {
+  return md
+    .replace(/```[\s\S]*?```/g, (m) => {
+      const code = m.slice(3, -3).replace(/^[a-z]*\n/, '')
+      return `<pre class="code-block"><code>${code.replace(/</g, '&lt;').replace(/>/g, '&gt;')}</code></pre>`
+    })
+    .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+    .replace(/`(.+?)`/g, '<code class="inline-code">$1</code>')
+    .replace(/^### (.+)$/gm, '<h3>$1</h3>')
+    .replace(/^## (.+)$/gm, '<h2>$1</h2>')
+    .replace(/^(\d+)\. (.+)$/gm, '<li class="ordered">$2</li>')
+    .replace(/^- (.+)$/gm, '<li>$1</li>')
+    .replace(/\n\n/g, '<br/><br/>')
+}
+
 // 模拟评论
 const comments = ref([
   { author: '匿名用户A', date: '2026-05-11', content: '写得很好，终于理解新野蛮风格了。' },
@@ -132,28 +148,7 @@ const toggleLike = () => {
   </div>
 </template>
 
-<script lang="ts">
-// 简单的 markdown 转 HTML（处理基本语法）
-function renderContent(md: string): string {
-  return md
-    .replace(/```[\s\S]*?```/g, (m) => {
-      const code = m.slice(3, -3).replace(/^[a-z]*\n/, '')
-      return `<pre class="code-block"><code>${code}</code></pre>`
-    })
-    .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
-    .replace(/`(.+?)`/g, '<code class="inline-code">$1</code>')
-    .replace(/^### (.+)$/gm, '<h3>$1</h3>')
-    .replace(/^## (.+)$/gm, '<h2>$1</h2>')
-    .replace(/^(\d+)\. (.+)$/gm, '<li class="ordered">$2</li>')
-    .replace(/^- (.+)$/gm, '<li>$1</li>')
-    .replace(/\n\n/g, '</p><p>')
-    .replace(/^(?!<[hlpd])/gm, '')
-    .replace(/(<li[^>]*>.*<\/li>\n?)+/g, (m) => {
-      if (m.includes('class="ordered"')) return `<ol>${m}</ol>`
-      return `<ul>${m}</ul>`
-    })
-}
-</script>
+
 
 <style scoped>
 .article-page {
