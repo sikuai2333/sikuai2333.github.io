@@ -1,15 +1,24 @@
 <script setup lang="ts">
-defineProps<{
+import { useRouter } from 'vue-router'
+const router = useRouter()
+const props = defineProps<{
   title: string
   desc: string
   icon: string
   href?: string
   bg?: string
 }>()
+
+function handleClick(e: MouseEvent) {
+  if (props.href && props.href.startsWith('/')) {
+    e.preventDefault()
+    router.push(props.href)
+  }
+}
 </script>
 
 <template>
-  <a :href="href||'#'" class="card scroll-reveal" :style="bg?{background:bg}:{}">
+  <a :href="href||'#'" class="card scroll-reveal" :style="bg?{background:bg}:{}" @click="handleClick">
     <span class="icon">{{ icon }}</span>
     <h3 class="title">{{ title }}</h3>
     <p class="desc">{{ desc }}</p>
