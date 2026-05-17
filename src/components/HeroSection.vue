@@ -28,81 +28,125 @@ onUnmounted(() => clearInterval(errorTimer))
 <template>
   <section class="hero">
     <div class="hero-art">
-      <svg viewBox="0 0 500 420" class="desk-svg" preserveAspectRatio="xMidYMid meet">
+      <svg viewBox="0 0 700 420" class="desk-svg" preserveAspectRatio="xMidYMid meet">
 
-        <!-- === 显示器（远处，在人头上方） === -->
-        <rect x="120" y="10" width="260" height="160" rx="6" fill="#1a1a1a"/>
-        <rect x="127" y="17" width="246" height="146" rx="3" :fill="showError ? '#c0392b' : '#1e1e2e'" class="screen-bg"/>
+        <!-- ========================================= -->
+        <!-- 45° 侧后方视角：                         -->
+        <!-- 近景左下 = 火柴人大背影                   -->
+        <!-- 远景右上 = 桌面+显示器+键盘               -->
+        <!-- 火柴人占画面 ~60%，屏幕小且远             -->
+        <!-- ========================================= -->
+
+        <!-- === 桌面（透视平行四边形，近大远小） === -->
+        <!-- 桌面从左下延伸到右上 -->
+        <polygon points="0,380 700,280 700,220 0,310" fill="#f5f5f0" stroke="#1a1a1a" stroke-width="3"/>
+        <!-- 桌面厚度（近侧） -->
+        <polygon points="0,380 700,280 700,295 0,395" fill="#e5e5e0" stroke="#1a1a1a" stroke-width="2"/>
+
+        <!-- 桌面远端边缘 -->
+        <line x1="0" y1="310" x2="700" y2="220" stroke="#1a1a1a" stroke-width="1.5"/>
+
+        <!-- === 显示器（在桌面远端，右上角区域） === -->
+        <!-- 支架 -->
+        <rect x="530" y="200" width="8" height="20" fill="#555" transform="rotate(-5, 534, 210)"/>
+        <rect x="515" y="215" width="40" height="4" rx="2" fill="#555"/>
+        <!-- 屏幕外框 -->
+        <rect x="475" y="80" width="180" height="130" rx="5" fill="#1a1a1a" transform="rotate(-5, 565, 145)"/>
+        <!-- 屏幕内容 -->
+        <rect x="480" y="85" width="170" height="120" rx="2" :fill="showError ? '#c0392b' : '#1e1e2e'" transform="rotate(-5, 565, 145)" class="screen-bg"/>
 
         <!-- 正常：代码 -->
-        <g v-if="!showError">
-          <text font-family="'Courier New',monospace" font-size="11" fill="#a6e3a1">
-            <tspan x="137" y="35">function init() {</tspan>
-            <tspan x="147" y="50">  const data = await fetch('/api');</tspan>
-            <tspan x="147" y="65">  if (!data.ok) throw Error();</tspan>
-            <tspan x="147" y="80">  return data.json();</tspan>
-            <tspan x="137" y="95">}</tspan>
-            <tspan x="137" y="110">const r = init();</tspan>
-            <tspan x="137" y="125">console.log(r);</tspan>
-            <tspan x="137" y="140">render(r); // ...</tspan>
+        <g v-if="!showError" transform="rotate(-5, 565, 145)">
+          <text font-family="'Courier New',monospace" font-size="9" fill="#a6e3a1">
+            <tspan x="490" y="102">function init() {</tspan>
+            <tspan x="500" y="114">  const data = await fetch();</tspan>
+            <tspan x="500" y="126">  if (!data.ok) throw Error();</tspan>
+            <tspan x="500" y="138">  return data.json();</tspan>
+            <tspan x="490" y="150">}</tspan>
+            <tspan x="490" y="162">const r = init();</tspan>
+            <tspan x="490" y="174">render(r);</tspan>
           </text>
-          <rect x="210" y="132" width="7" height="13" fill="#a6e3a1" class="cursor"/>
+          <rect x="540" y="166" width="6" height="11" fill="#a6e3a1" class="cursor"/>
         </g>
 
         <!-- 错误：红屏 -->
-        <g v-if="showError" class="red-flash">
-          <text x="250" y="80" text-anchor="middle" fill="white" font-size="52" font-weight="900" font-family="'Courier New',monospace">502</text>
-          <text x="250" y="115" text-anchor="middle" fill="rgba(255,255,255,0.85)" font-size="16" font-weight="700" font-family="'Courier New',monospace">BAD GATEWAY</text>
-          <text x="250" y="150" text-anchor="middle" font-size="28">😵</text>
+        <g v-if="showError" class="red-flash" transform="rotate(-5, 565, 145)">
+          <text x="565" y="135" text-anchor="middle" fill="white" font-size="36" font-weight="900" font-family="'Courier New',monospace">502</text>
+          <text x="565" y="160" text-anchor="middle" fill="rgba(255,255,255,0.85)" font-size="12" font-weight="700" font-family="'Courier New',monospace">BAD GATEWAY</text>
+          <text x="565" y="185" text-anchor="middle" fill="rgba(255,255,255,0.5)" font-size="22">😵</text>
         </g>
 
-        <!-- 显示器支架（露一点） -->
-        <rect x="232" y="170" width="36" height="5" rx="2" fill="#555"/>
-        <rect x="245" y="175" width="10" height="12" fill="#555"/>
+        <!-- === 键盘（桌面上，显示器前方） === -->
+        <polygon points="380,280 520,255 510,245 370,268" fill="#e8e8e8" stroke="#1a1a1a" stroke-width="1.5"/>
+        <rect x="385" y="260" width="115" height="4" rx="1" fill="#d0d0d0" transform="rotate(-5, 442, 262)"/>
+        <rect x="388" y="266" width="110" height="3" rx="1" fill="#d0d0d0" transform="rotate(-5, 443, 268)"/>
 
-        <!-- === 桌面边缘（只露一条边） === -->
-        <rect x="-20" y="192" width="540" height="8" rx="2" fill="#f0f0eb" stroke="#1a1a1a" stroke-width="2.5"/>
+        <!-- 鼠标 -->
+        <ellipse cx="545" cy="260" rx="10" ry="6" fill="#e0e0e0" stroke="#1a1a1a" stroke-width="1"/>
 
-        <!-- === 火柴人背影（半身，放大） === -->
+        <!-- ============================================= -->
+        <!-- === 火柴人巨大背影（左下，占60%画面） === -->
+        <!-- ============================================= -->
 
-        <!-- 后脑勺（大） -->
-        <circle cx="250" cy="290" r="38" fill="#2a2a2a" stroke="#1a1a1a" stroke-width="3.5"/>
-        <!-- 头发纹理（几条线） -->
-        <path d="M230 275 Q250 268 270 275" fill="none" stroke="#444" stroke-width="1.5"/>
-        <path d="M228 282 Q250 276 272 282" fill="none" stroke="#444" stroke-width="1"/>
+        <!-- 椅子（在火柴人后面，先画） -->
+        <rect x="120" y="280" width="160" height="6" rx="2" fill="#888" transform="rotate(5, 200, 283)"/>
+        <line x1="135" y1="286" x2="125" y2="400" stroke="#777" stroke-width="4"/>
+        <line x1="265" y1="286" x2="275" y2="400" stroke="#777" stroke-width="4"/>
+        <!-- 椅背 -->
+        <rect x="130" y="230" width="140" height="5" rx="1" fill="#888"/>
+        <line x1="135" y1="200" x2="135" y2="234" stroke="#888" stroke-width="4"/>
+        <line x1="265" y1="200" x2="265" y2="234" stroke="#888" stroke-width="4"/>
+        <!-- 椅轮 -->
+        <circle cx="150" cy="408" r="8" fill="#999"/>
+        <circle cx="250" cy="408" r="8" fill="#999"/>
 
+        <!-- 后背（从椅子到肩膀，粗线） -->
+        <line x1="200" y1="280" x2="195" y2="195" stroke="#1a1a1a" stroke-width="6" stroke-linecap="round"/>
+
+        <!-- 头（后脑勺，巨大圆） -->
+        <circle cx="200" cy="130" r="40" fill="#2a2a2a" stroke="#1a1a1a" stroke-width="4"/>
+        <!-- 头发纹理 -->
+        <path d="M170,115 Q185,95 200,100 Q215,95 230,115" fill="none" stroke="#555" stroke-width="1.5"/>
+        <path d="M175,120 Q190,105 210,105 Q225,105 230,118" fill="none" stroke="#555" stroke-width="1"/>
         <!-- 耳朵 -->
-        <ellipse cx="212" cy="290" rx="5" ry="9" fill="none" stroke="#1a1a1a" stroke-width="2.5"/>
-        <ellipse cx="288" cy="290" rx="5" ry="9" fill="none" stroke="#1a1a1a" stroke-width="2.5"/>
+        <ellipse cx="158" cy="130" rx="6" ry="10" fill="none" stroke="#1a1a1a" stroke-width="2.5"/>
+        <ellipse cx="242" cy="130" rx="6" ry="10" fill="none" stroke="#1a1a1a" stroke-width="2.5"/>
 
         <!-- 脖子 -->
-        <line x1="240" y1="326" x2="238" y2="340" stroke="#1a1a1a" stroke-width="4"/>
-        <line x1="260" y1="326" x2="262" y2="340" stroke="#1a1a1a" stroke-width="4"/>
+        <line x1="190" y1="168" x2="188" y2="185" stroke="#1a1a1a" stroke-width="5"/>
+        <line x1="210" y1="168" x2="212" y2="185" stroke="#1a1a1a" stroke-width="5"/>
 
         <!-- 肩膀（宽） -->
-        <line x1="180" y1="348" x2="320" y2="348" stroke="#1a1a1a" stroke-width="5" stroke-linecap="round"/>
+        <line x1="140" y1="195" x2="260" y2="195" stroke="#1a1a1a" stroke-width="6" stroke-linecap="round"/>
 
-        <!-- 后背（只看到上半截） -->
-        <line x1="250" y1="340" x2="250" y2="420" stroke="#1a1a1a" stroke-width="4.5" stroke-linecap="round"/>
+        <!-- 左臂：伸向键盘 -->
+        <line x1="140" y1="195" x2="200" y2="235" stroke="#1a1a1a" stroke-width="4" stroke-linecap="round"/>
+        <line x1="200" y1="235" x2="350" y2="265" stroke="#1a1a1a" stroke-width="3.5" stroke-linecap="round"/>
+        <circle cx="350" cy="265" r="5" fill="#1a1a1a" class="hand-left" :class="{ typing: !showError }"/>
 
-        <!-- === 左臂+左手 === -->
-        <line x1="180" y1="348" x2="150" y2="310" stroke="#1a1a1a" stroke-width="4" stroke-linecap="round" class="upper-arm-l"/>
-        <line x1="150" y1="310" x2="145" y2="205" stroke="#1a1a1a" stroke-width="3.5" stroke-linecap="round" class="forearm-l"/>
-        <!-- 左手（键盘上） -->
-        <ellipse cx="145" cy="202" rx="8" ry="6" fill="#1a1a1a" class="hand-l"/>
+        <!-- 右臂：伸向键盘 -->
+        <line x1="260" y1="195" x2="310" y2="240" stroke="#1a1a1a" stroke-width="4" stroke-linecap="round"/>
+        <line x1="310" y1="240" x2="430" y2="258" stroke="#1a1a1a" stroke-width="3.5" stroke-linecap="round"
+              :class="{ 'arm-slam': showError }"/>
+        <circle cx="430" cy="258" r="5" fill="#1a1a1a" class="hand-right"
+                :class="{ typing: !showError, slam: showError }"/>
 
-        <!-- === 右臂+右手 === -->
-        <line x1="320" y1="348" x2="350" y2="310" stroke="#1a1a1a" stroke-width="4" stroke-linecap="round" class="upper-arm-r"/>
-        <line x1="350" y1="310" x2="355" :y2="showError ? 198 : 205" stroke="#1a1a1a" stroke-width="3.5" stroke-linecap="round" class="forearm-r"/>
-        <!-- 右手 -->
-        <ellipse :cx="355" :cy="showError ? 195 : 202" rx="8" ry="6" fill="#1a1a1a" class="hand-r"/>
-
-        <!-- 砸桌效果 -->
-        <g v-if="showError" class="slam-fx">
-          <line x1="345" y1="192" x2="330" y2="185" stroke="#1a1a1a" stroke-width="2" opacity="0.5"/>
-          <line x1="355" y1="190" x2="355" y2="178" stroke="#1a1a1a" stroke-width="2" opacity="0.5"/>
-          <line x1="365" y1="192" x2="380" y2="185" stroke="#1a1a1a" stroke-width="2" opacity="0.5"/>
+        <!-- 砸桌震波 -->
+        <g v-if="showError" class="slam-effect">
+          <line x1="425" y1="255" x2="415" y2="245" stroke="#1a1a1a" stroke-width="2" opacity="0.5"/>
+          <line x1="430" y1="252" x2="430" y2="240" stroke="#1a1a1a" stroke-width="2" opacity="0.5"/>
+          <line x1="435" y1="255" x2="445" y2="245" stroke="#1a1a1a" stroke-width="2" opacity="0.5"/>
         </g>
+
+        <!-- 大腿（坐在椅子上） -->
+        <line x1="185" y1="278" x2="155" y2="340" stroke="#1a1a1a" stroke-width="5" stroke-linecap="round"/>
+        <line x1="215" y1="278" x2="245" y2="340" stroke="#1a1a1a" stroke-width="5" stroke-linecap="round"/>
+        <!-- 小腿 -->
+        <line x1="155" y1="340" x2="145" y2="390" stroke="#1a1a1a" stroke-width="4" stroke-linecap="round"/>
+        <line x1="245" y1="340" x2="255" y2="390" stroke="#1a1a1a" stroke-width="4" stroke-linecap="round"/>
+        <!-- 脚 -->
+        <line x1="145" y1="390" x2="130" y2="398" stroke="#1a1a1a" stroke-width="4" stroke-linecap="round"/>
+        <line x1="255" y1="390" x2="270" y2="398" stroke="#1a1a1a" stroke-width="4" stroke-linecap="round"/>
 
       </svg>
     </div>
@@ -126,48 +170,48 @@ onUnmounted(() => clearInterval(errorTimer))
       <div class="countdown-box" :class="{ overtime: isOvertime }">
         <div class="countdown-label">{{ isOvertime ? '🎉 已加班' : '⏰ 距离下班' }}</div>
         <div class="countdown-time">{{ remaining }}</div>
-        <div class="countdown-bar">
-          <div class="countdown-fill" :style="{ width: Math.min(percent, 100) + '%' }"></div>
-        </div>
+        <div class="countdown-bar"><div class="countdown-fill" :style="{ width: Math.min(percent,100)+'%' }"></div></div>
       </div>
     </div>
   </section>
 </template>
 
 <style scoped>
-.hero { padding: 32px 24px; max-width: 650px; margin: 0 auto; display: flex; flex-direction: column; align-items: center; gap: 20px; }
-.hero-art { width: 100%; max-width: 500px; }
+.hero { padding: 40px 24px 32px; max-width: 700px; margin: 0 auto; display: flex; flex-direction: column; align-items: center; gap: 20px; }
+.hero-art { width: 100%; max-width: 600px; }
 .desk-svg { width: 100%; height: auto; }
-
 .screen-bg { transition: fill 0.4s ease; }
+
+.code-scroll { animation: scrollUp 5s linear infinite; }
+@keyframes scrollUp { 0%{transform:translateY(0)} 75%{transform:translateY(-25px)} 100%{transform:translateY(-25px)} }
 .cursor { animation: blink 0.7s step-end infinite; }
 @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
-.red-flash { animation: flashIn 0.3s ease-out; }
+.red-flash { animation: flashIn 0.3s; }
 @keyframes flashIn { 0%{opacity:0} 100%{opacity:1} }
 
-/* 502时右手砸桌过渡 */
-.forearm-r { transition: all 0.3s cubic-bezier(0.68,-0.55,0.27,1.55); }
-.hand-r { transition: all 0.3s cubic-bezier(0.68,-0.55,0.27,1.55); }
-.slam-fx { animation: slamWave 0.4s ease-out; }
-@keyframes slamWave { 0%{opacity:0;transform:scale(0.5)} 50%{opacity:1;transform:scale(1.3)} 100%{opacity:0;transform:scale(1.6)} }
+.typing { animation: typeMove 0.2s ease-in-out infinite alternate; }
+@keyframes typeMove { 0%{transform:translateY(0)} 100%{transform:translateY(3px)} }
+.slam { animation: slamDown 0.3s cubic-bezier(0.68,-0.55,0.27,1.55); }
+@keyframes slamDown { 0%{transform:translateY(-15px)} 100%{transform:translateY(8px)} }
+.slam-effect { animation: slamWave 0.4s ease-out; }
+@keyframes slamWave { 0%{opacity:0;transform:scale(0.5)} 50%{opacity:1;transform:scale(1.2)} 100%{opacity:0;transform:scale(1.5)} }
 
-.hero-text { text-align: center; width: 100%; max-width: 480px; display: flex; flex-direction: column; align-items: center; gap: 14px; }
-.hero-slogan { font-size: clamp(24px, 5vw, 40px); font-weight: 900; line-height: 1.2; }
+.hero-text { text-align: center; width: 100%; max-width: 500px; display: flex; flex-direction: column; align-items: center; gap: 16px; }
+.hero-slogan { font-size: clamp(26px,5vw,44px); font-weight: 900; line-height: 1.2; }
 .slogan-main { color: var(--accent); }
 .slogan-divider { color: var(--muted); margin: 0 8px; font-weight: 400; }
 .slogan-sub { color: #6c63ff; }
-.hero-info { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; font-size: 13px; color: var(--muted); }
-.hero-quote { font-size: 13px; color: var(--muted); font-style: italic; cursor: pointer; padding: 10px 16px; background: rgba(0,0,0,0.03); border-left: 3px solid var(--accent); text-align: left; width: 100%; }
+.hero-info { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; font-size: 14px; color: var(--muted); }
+.hero-quote { font-size: 14px; color: var(--muted); font-style: italic; cursor: pointer; padding: 12px 18px; background: rgba(0,0,0,0.03); border-left: 3px solid var(--accent); text-align: left; width: 100%; }
 .hero-quote:hover { background: rgba(0,0,0,0.06); }
-.quote-hint { display: block; font-size: 10px; color: #bbb; font-style: normal; margin-top: 3px; }
-.countdown-box { width: 100%; padding: 14px 18px; background: var(--card-bg); border: var(--border-w) solid var(--border); box-shadow: var(--shadow-sm); text-align: center; }
+.quote-hint { display: block; font-size: 11px; color: #bbb; font-style: normal; margin-top: 4px; }
+.countdown-box { width: 100%; padding: 16px 20px; background: var(--card-bg); border: var(--border-w) solid var(--border); box-shadow: var(--shadow-sm); text-align: center; }
 .countdown-box.overtime { border-color: var(--success); background: #f0fff4; }
-.countdown-label { font-size: 11px; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 4px; }
-.countdown-time { font-size: clamp(28px, 5vw, 48px); font-weight: 900; font-variant-numeric: tabular-nums; color: var(--accent); line-height: 1.1; }
+.countdown-label { font-size: 12px; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 4px; }
+.countdown-time { font-size: clamp(30px,6vw,52px); font-weight: 900; font-variant-numeric: tabular-nums; color: var(--accent); line-height: 1.1; }
 .overtime .countdown-time { color: var(--success); }
-.countdown-bar { margin-top: 8px; height: 4px; background: #e0e0e0; border-radius: 2px; overflow: hidden; }
-.countdown-fill { height: 100%; background: var(--accent); border-radius: 2px; transition: width 1s linear; }
+.countdown-bar { margin-top: 10px; height: 5px; background: #e0e0e0; border-radius: 3px; overflow: hidden; }
+.countdown-fill { height: 100%; background: var(--accent); border-radius: 3px; transition: width 1s linear; }
 .overtime .countdown-fill { background: var(--success); }
-
-@media (max-width: 768px) { .hero { padding: 20px 14px; } .hero-info { gap: 6px; font-size: 11px; } }
+@media (max-width: 768px) { .hero{padding:24px 16px 20px} .hero-info{gap:6px;font-size:12px} }
 </style>
