@@ -68,7 +68,7 @@ const usecases = [
     <h2>适用场景</h2>
     <p class="subtitle">新野蛮风格适合这些类型的网站</p>
     <div class="usecase-grid">
-      <a v-for="u in usecases" :key="u.id" :href="'/2/' + u.id" class="usecase-card">
+      <a v-for="u in usecases" :key="u.id" :href="'/2/' + u.id" class="usecase-card" @click.prevent="$router.push('/2/' + u.id)">
         <span class="usecase-icon">{{ u.icon }}</span>
         <h3>{{ u.title }}</h3>
         <p>{{ u.desc }}</p>
